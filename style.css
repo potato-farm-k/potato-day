@@ -5,6 +5,7 @@
   --text-soft: #7a5b45;
   --accent: #d88945;
   --shadow: rgba(76, 52, 39, 0.12);
+  --overlay: rgba(55, 35, 24, 0.56);
 }
 
 * {
@@ -17,6 +18,66 @@ body {
   font-family: Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
   color: var(--text-main);
   background: var(--page-bg);
+}
+
+button {
+  font: inherit;
+}
+
+.workflow-toggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid rgba(216, 137, 69, 0.36);
+  border-radius: 999px;
+  color: var(--text-main);
+  background: rgba(255, 250, 240, 0.88);
+  box-shadow: 0 10px 24px var(--shadow);
+  cursor: pointer;
+}
+
+.workflow-toggle:hover {
+  background: var(--panel-bg);
+}
+
+.workflow-toggle:focus-visible,
+.modal-close:focus-visible {
+  outline: 3px solid rgba(216, 137, 69, 0.42);
+  outline-offset: 3px;
+}
+
+.workflow-toggle-icon {
+  position: relative;
+  width: 16px;
+  height: 18px;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  background: #fff7e8;
+}
+
+.workflow-toggle-icon::before,
+.workflow-toggle-icon::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.workflow-toggle-icon::before {
+  top: 5px;
+}
+
+.workflow-toggle-icon::after {
+  top: 10px;
 }
 
 .home-screen {
@@ -63,4 +124,94 @@ h1 {
   color: var(--text-soft);
   font-size: 1rem;
   line-height: 1.6;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--overlay);
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal-card {
+  width: min(100%, 980px);
+  max-height: calc(100vh - 48px);
+  padding: 18px;
+  border: 2px solid rgba(216, 137, 69, 0.34);
+  border-radius: 8px;
+  background: var(--panel-bg);
+  box-shadow: 0 24px 60px rgba(55, 35, 24, 0.24);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 1.25rem;
+}
+
+.modal-close {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(216, 137, 69, 0.34);
+  border-radius: 50%;
+  color: var(--text-main);
+  background: #fff7e8;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background: #f8dfbd;
+}
+
+.workflow-image-frame {
+  max-height: calc(100vh - 150px);
+  overflow: auto;
+  border-radius: 6px;
+  background: #f6e7d0;
+}
+
+.workflow-image-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 560px) {
+  .workflow-toggle {
+    top: 12px;
+    right: 12px;
+    padding: 7px 12px;
+    font-size: 0.9rem;
+  }
+
+  .home-screen {
+    padding: 72px 18px 24px;
+  }
+
+  .modal-overlay {
+    padding: 14px;
+  }
+
+  .modal-card {
+    max-height: calc(100vh - 28px);
+    padding: 14px;
+  }
 }

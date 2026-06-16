@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <button class="workflow-toggle" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="workflow-modal" data-workflow-open>
+    <span class="workflow-toggle-icon" aria-hidden="true"></span>
+    <span>루틴 보기</span>
+  </button>
+
   <main class="home-screen">
     <section class="intro" aria-labelledby="game-title">
       <p class="subtitle">감자의 하루</p>
@@ -17,6 +22,19 @@
       </div>
     </section>
   </main>
+
+  <div class="modal-overlay" id="workflow-modal" role="dialog" aria-modal="true" aria-labelledby="workflow-title" hidden>
+    <section class="modal-card">
+      <header class="modal-header">
+        <h2 id="workflow-title">워크플로우</h2>
+        <button class="modal-close" type="button" aria-label="닫기" data-workflow-close>×</button>
+      </header>
+      <div class="workflow-image-frame">
+        <img src="assets/images/workflow-diagram.png" alt="Potato’s Day workflow diagram">
+      </div>
+    </section>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

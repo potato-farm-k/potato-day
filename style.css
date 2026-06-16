@@ -25,25 +25,29 @@ button {
 }
 
 .workflow-toggle {
-  position: fixed;
-  top: 18px;
-  right: 18px;
+  position: absolute;
+  top: 14px;
+  right: 14px;
   z-index: 10;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  min-height: 40px;
-  padding: 8px 14px;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
   border: 1px solid rgba(216, 137, 69, 0.36);
-  border-radius: 999px;
+  border-radius: 50%;
   color: var(--text-main);
-  background: rgba(255, 250, 240, 0.88);
-  box-shadow: 0 10px 24px var(--shadow);
+  background: #fff3dc;
+  box-shadow: 0 8px 18px var(--shadow);
   cursor: pointer;
+  transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
 .workflow-toggle:hover {
-  background: var(--panel-bg);
+  background: #fffaf0;
+  box-shadow: 0 12px 22px var(--shadow);
+  transform: translateY(-1px);
 }
 
 .workflow-toggle:focus-visible,
@@ -52,32 +56,9 @@ button {
   outline-offset: 3px;
 }
 
-.workflow-toggle-icon {
-  position: relative;
-  width: 16px;
-  height: 18px;
-  border: 2px solid var(--accent);
-  border-radius: 4px;
-  background: #fff7e8;
-}
-
-.workflow-toggle-icon::before,
-.workflow-toggle-icon::after {
-  content: "";
-  position: absolute;
-  left: 3px;
-  right: 3px;
-  height: 2px;
-  border-radius: 999px;
-  background: var(--accent);
-}
-
-.workflow-toggle-icon::before {
-  top: 5px;
-}
-
-.workflow-toggle-icon::after {
-  top: 10px;
+.workflow-toggle span {
+  font-size: 1.25rem;
+  line-height: 1;
 }
 
 .home-screen {
@@ -106,6 +87,7 @@ h1 {
 }
 
 .start-panel {
+  position: relative;
   padding: 36px 28px;
   border: 2px solid rgba(216, 137, 69, 0.28);
   border-radius: 8px;
@@ -182,6 +164,9 @@ h1 {
 }
 
 .workflow-image-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   max-height: calc(100vh - 150px);
   overflow: auto;
   border-radius: 6px;
@@ -190,16 +175,19 @@ h1 {
 
 .workflow-image-frame img {
   display: block;
-  width: 100%;
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
   height: auto;
+  object-fit: contain;
 }
 
 @media (max-width: 560px) {
   .workflow-toggle {
-    top: 12px;
-    right: 12px;
-    padding: 7px 12px;
-    font-size: 0.9rem;
+    top: 10px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
   }
 
   .home-screen {

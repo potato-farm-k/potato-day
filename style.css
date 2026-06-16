@@ -4,6 +4,11 @@
   --text-main: #4c3427;
   --text-soft: #7a5b45;
   --accent: #d88945;
+  --potato-fur: #fff1cd;
+  --potato-fur-light: #fff8e4;
+  --potato-fur-shadow: #edd29a;
+  --potato-nose: #6d4635;
+  --potato-tongue: #f49aa7;
   --sage: #89a86f;
   --sky: #b9dce8;
   --peach: #f4b89f;
@@ -216,6 +221,7 @@ h1 {
   position: absolute;
   left: 50%;
   bottom: 18px;
+  z-index: 1;
   width: min(70%, 420px);
   height: 78px;
   border-radius: 50%;
@@ -230,6 +236,7 @@ h1 {
   position: absolute;
   left: 50%;
   bottom: 48px;
+  z-index: 2;
   width: 150px;
   height: 62px;
   border-radius: 48% 52% 46% 54%;
@@ -252,6 +259,7 @@ h1 {
   position: absolute;
   right: 76px;
   bottom: 28px;
+  z-index: 5;
   width: 54px;
   height: 48px;
   border-radius: 10px 10px 6px 6px;
@@ -300,6 +308,263 @@ h1 {
 .side-table span::after {
   right: -15px;
   transform: rotate(24deg);
+}
+
+.potato-character {
+  position: absolute;
+  left: 50%;
+  bottom: 36px;
+  z-index: 4;
+  width: 168px;
+  height: 162px;
+  transform: translateX(-50%);
+}
+
+.potato-tail {
+  position: absolute;
+  right: 2px;
+  top: 50px;
+  width: 74px;
+  height: 74px;
+  border: 17px solid var(--potato-fur-light);
+  border-left-color: transparent;
+  border-bottom-color: var(--potato-fur);
+  border-radius: 50%;
+  box-shadow:
+    inset -7px 6px 0 rgba(237, 210, 154, 0.32),
+    0 8px 16px rgba(76, 52, 39, 0.1);
+  transform: rotate(38deg);
+}
+
+.potato-tail::after {
+  content: "";
+  position: absolute;
+  right: 2px;
+  top: 13px;
+  width: 23px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--potato-fur-light);
+}
+
+.potato-body {
+  position: absolute;
+  left: 17px;
+  bottom: 0;
+  width: 132px;
+  height: 120px;
+  border-radius: 52% 48% 44% 46%;
+  background:
+    radial-gradient(circle at 50% 25%, var(--potato-fur-light) 0 34%, transparent 35%),
+    var(--potato-fur);
+  box-shadow:
+    -22px 38px 0 -15px var(--potato-fur-light),
+    22px 38px 0 -15px var(--potato-fur-light),
+    inset 0 -13px 0 rgba(237, 210, 154, 0.28),
+    0 15px 22px rgba(76, 52, 39, 0.14);
+}
+
+.potato-body::before,
+.potato-body::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 34px;
+  width: 34px;
+  height: 48px;
+  border-radius: 48% 52% 58% 42%;
+  background: var(--potato-fur-light);
+}
+
+.potato-body::before {
+  left: -11px;
+  transform: rotate(-22deg);
+}
+
+.potato-body::after {
+  right: -11px;
+  transform: rotate(22deg);
+}
+
+.potato-fur {
+  position: absolute;
+  z-index: 3;
+  top: 46px;
+  width: 32px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--potato-fur-light);
+}
+
+.potato-fur-left {
+  left: -4px;
+  transform: rotate(12deg);
+}
+
+.potato-fur-right {
+  right: -4px;
+  transform: rotate(-12deg);
+}
+
+.potato-ear {
+  position: absolute;
+  top: 12px;
+  z-index: 2;
+  width: 39px;
+  height: 45px;
+  border-radius: 58% 42% 52% 48%;
+  background: var(--potato-fur-shadow);
+  box-shadow: inset 0 -9px 0 rgba(255, 248, 228, 0.5);
+}
+
+.potato-ear-left {
+  left: 17px;
+  transform: rotate(-26deg);
+}
+
+.potato-ear-right {
+  right: 17px;
+  transform: rotate(26deg) scaleX(-1);
+}
+
+.potato-face {
+  position: absolute;
+  left: 14px;
+  top: -2px;
+  z-index: 4;
+  width: 104px;
+  height: 104px;
+  border-radius: 49% 51% 48% 52%;
+  background: var(--potato-fur-light);
+  box-shadow:
+    -18px 28px 0 -12px var(--potato-fur),
+    18px 28px 0 -12px var(--potato-fur),
+    inset 0 -8px 0 rgba(237, 210, 154, 0.22);
+}
+
+.potato-face::before,
+.potato-face::after {
+  content: "";
+  position: absolute;
+  bottom: 24px;
+  width: 30px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--potato-fur);
+}
+
+.potato-face::before {
+  left: 12px;
+  transform: rotate(-10deg);
+}
+
+.potato-face::after {
+  right: 12px;
+  transform: rotate(10deg);
+}
+
+.potato-eye {
+  position: absolute;
+  top: 42px;
+  z-index: 2;
+  width: 13px;
+  height: 15px;
+  border-radius: 50%;
+  background: #2f211d;
+  box-shadow: inset 3px 3px 0 rgba(255, 255, 255, 0.7);
+}
+
+.potato-eye-left {
+  left: 30px;
+}
+
+.potato-eye-right {
+  right: 30px;
+}
+
+.potato-cheek {
+  position: absolute;
+  top: 60px;
+  z-index: 1;
+  width: 16px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(244, 154, 167, 0.34);
+}
+
+.potato-cheek-left {
+  left: 19px;
+}
+
+.potato-cheek-right {
+  right: 19px;
+}
+
+.potato-muzzle {
+  position: absolute;
+  left: 50%;
+  top: 55px;
+  z-index: 2;
+  width: 40px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff7df;
+  transform: translateX(-50%);
+}
+
+.potato-nose {
+  position: absolute;
+  left: 50%;
+  top: 55px;
+  z-index: 3;
+  width: 15px;
+  height: 11px;
+  border-radius: 48% 52% 58% 42%;
+  background: var(--potato-nose);
+  transform: translateX(-50%);
+}
+
+.potato-smile {
+  position: absolute;
+  left: 50%;
+  top: 64px;
+  z-index: 3;
+  width: 32px;
+  height: 20px;
+  border-bottom: 3px solid var(--potato-nose);
+  border-radius: 0 0 999px 999px;
+  transform: translateX(-50%);
+}
+
+.potato-tongue {
+  position: absolute;
+  left: 50%;
+  top: 77px;
+  z-index: 4;
+  width: 18px;
+  height: 16px;
+  border-radius: 0 0 999px 999px;
+  background: var(--potato-tongue);
+  transform: translateX(-50%);
+}
+
+.potato-paw {
+  position: absolute;
+  bottom: 4px;
+  z-index: 5;
+  width: 28px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffecc2;
+  box-shadow: inset 0 -4px 0 rgba(237, 210, 154, 0.32);
+}
+
+.potato-paw-left {
+  left: 34px;
+}
+
+.potato-paw-right {
+  right: 34px;
 }
 
 .modal-overlay {
@@ -422,6 +687,66 @@ h1 {
   .cushion {
     width: 124px;
     height: 54px;
+  }
+
+  .potato-character {
+    bottom: 34px;
+    width: 142px;
+    height: 136px;
+  }
+
+  .potato-tail {
+    right: -2px;
+    top: 42px;
+    width: 62px;
+    height: 62px;
+    border-width: 14px;
+  }
+
+  .potato-body {
+    left: 14px;
+    width: 112px;
+    height: 102px;
+  }
+
+  .potato-ear {
+    top: 9px;
+    width: 32px;
+    height: 38px;
+  }
+
+  .potato-face {
+    left: 11px;
+    width: 90px;
+    height: 90px;
+  }
+
+  .potato-eye {
+    top: 36px;
+  }
+
+  .potato-eye-left {
+    left: 25px;
+  }
+
+  .potato-eye-right {
+    right: 25px;
+  }
+
+  .potato-muzzle {
+    top: 49px;
+  }
+
+  .potato-nose {
+    top: 49px;
+  }
+
+  .potato-smile {
+    top: 57px;
+  }
+
+  .potato-tongue {
+    top: 69px;
   }
 
   .side-table {

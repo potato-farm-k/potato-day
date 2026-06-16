@@ -4,15 +4,15 @@
   --text-main: #4c3427;
   --text-soft: #7a5b45;
   --accent: #d88945;
-  --potato-fur: #fff0bf;
-  --potato-fur-light: #fff9df;
-  --potato-fur-shadow: #e8c978;
-  --potato-outline: #c89259;
-  --potato-nose: #6f4638;
-  --potato-tongue: #f49aa7;
+  --potato-fur: #fff3c7;
+  --potato-fur-light: #fffdf0;
+  --potato-fur-warm: #efd28d;
+  --potato-outline: #bd854f;
+  --potato-nose: #624036;
+  --potato-tongue: #ef8fa3;
   --sage: #89a86f;
   --sky: #b9dce8;
-  --peach: #eda0a8;
+  --peach: #e9909c;
   --floor: #e7c292;
   --shadow: rgba(76, 52, 39, 0.12);
   --overlay: rgba(55, 35, 24, 0.56);
@@ -252,15 +252,16 @@ h1 {
 .cushion {
   position: absolute;
   left: 50%;
-  bottom: 48px;
+  bottom: 50px;
   z-index: 2;
-  width: 150px;
-  height: 62px;
+  width: 190px;
+  height: 34px;
   border-radius: 48% 52% 46% 54%;
-  background: #f3b5a2;
+  background: #fff3e6;
+  opacity: 0.22;
   box-shadow:
-    inset 0 -8px 0 rgba(161, 82, 68, 0.13),
-    0 14px 24px rgba(76, 52, 39, 0.12);
+    inset 0 -5px 0 rgba(161, 82, 68, 0.08),
+    0 8px 16px rgba(76, 52, 39, 0.05);
   transform: translateX(-50%);
 }
 
@@ -330,318 +331,137 @@ h1 {
 .potato-character {
   position: absolute;
   left: 50%;
-  bottom: 34px;
+  bottom: 24px;
   z-index: 4;
-  width: 178px;
-  height: 172px;
-  filter: drop-shadow(0 14px 18px rgba(76, 52, 39, 0.2));
+  width: 236px;
+  height: 200px;
+  filter: drop-shadow(0 16px 18px rgba(76, 52, 39, 0.2));
   transform: translateX(-50%);
 }
 
 .potato-character::before {
   content: "";
   position: absolute;
-  left: 20px;
-  right: 16px;
+  left: 26px;
+  right: 22px;
   top: 26px;
-  bottom: 11px;
+  bottom: 12px;
   z-index: -1;
   border-radius: 50%;
-  background: rgba(255, 252, 235, 0.72);
-  box-shadow: 0 0 0 8px rgba(255, 252, 235, 0.26);
+  background: rgba(255, 253, 240, 0.78);
+  box-shadow: 0 0 0 9px rgba(255, 253, 240, 0.26);
 }
 
-.potato-tail {
-  position: absolute;
-  right: -2px;
-  top: 45px;
-  width: 84px;
-  height: 84px;
-  border: 20px solid var(--potato-fur-light);
-  border-left-color: rgba(255, 240, 191, 0.38);
-  border-bottom-color: var(--potato-fur);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 3px rgba(200, 146, 89, 0.42),
-    inset -8px 7px 0 rgba(237, 210, 154, 0.36),
-    0 8px 16px rgba(76, 52, 39, 0.12);
-  transform: rotate(32deg);
+.potato-dog {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
-.potato-tail::after {
-  content: "";
-  position: absolute;
-  right: 2px;
-  top: 13px;
-  width: 26px;
-  height: 25px;
-  border-radius: 50%;
-  background: var(--potato-fur-light);
+.potato-ground-shadow {
+  fill: rgba(76, 52, 39, 0.18);
 }
 
-.potato-body {
-  position: absolute;
-  left: 19px;
-  bottom: 0;
-  width: 134px;
-  height: 116px;
-  border: 3px solid rgba(200, 146, 89, 0.5);
-  border-radius: 55% 45% 44% 46%;
-  background:
-    radial-gradient(circle at 50% 20%, var(--potato-fur-light) 0 42%, transparent 43%),
-    var(--potato-fur);
-  box-shadow:
-    -24px 36px 0 -15px var(--potato-fur-light),
-    24px 36px 0 -15px var(--potato-fur-light),
-    inset 0 -13px 0 rgba(237, 210, 154, 0.28),
-    0 15px 22px rgba(76, 52, 39, 0.16);
+.potato-tail-outline {
+  fill: none;
+  stroke: rgba(189, 133, 79, 0.7);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 36px;
 }
 
-.potato-body::before,
-.potato-body::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  bottom: 34px;
-  width: 34px;
-  height: 48px;
-  border-radius: 48% 52% 58% 42%;
-  background: var(--potato-fur-light);
+.potato-tail-fur {
+  fill: none;
+  stroke: var(--potato-fur-light);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 28px;
 }
 
-.potato-body::before {
-  left: -11px;
-  transform: rotate(-22deg);
+.potato-tail-tip,
+.potato-body-fluff,
+.potato-head-fluff {
+  fill: var(--potato-fur-light);
+  stroke: rgba(189, 133, 79, 0.34);
+  stroke-width: 2.4px;
 }
 
-.potato-body::after {
-  right: -11px;
-  transform: rotate(22deg);
+.potato-body-base {
+  fill: var(--potato-fur);
+  stroke: rgba(189, 133, 79, 0.58);
+  stroke-width: 3px;
 }
 
-.potato-fluff {
-  position: absolute;
-  z-index: 5;
-  border: 3px solid rgba(200, 146, 89, 0.28);
-  border-radius: 50%;
-  background: var(--potato-fur-light);
-}
-
-.potato-fluff-top {
-  left: 50%;
-  top: -14px;
-  width: 46px;
-  height: 34px;
-  border-bottom-color: transparent;
-  transform: translateX(-50%);
-}
-
-.potato-fluff-left {
-  left: -14px;
-  top: 40px;
-  width: 42px;
-  height: 50px;
-  border-right-color: transparent;
-  transform: rotate(-16deg);
-}
-
-.potato-fluff-right {
-  right: -14px;
-  top: 40px;
-  width: 42px;
-  height: 50px;
-  border-left-color: transparent;
-  transform: rotate(16deg);
-}
-
-.potato-fur {
-  position: absolute;
-  z-index: 3;
-  top: 48px;
-  width: 36px;
-  height: 58px;
-  border-radius: 50%;
-  background: var(--potato-fur-light);
-  box-shadow: 0 0 0 2px rgba(200, 146, 89, 0.22);
-}
-
-.potato-fur-left {
-  left: -4px;
-  transform: rotate(12deg);
-}
-
-.potato-fur-right {
-  right: -4px;
-  transform: rotate(-12deg);
+.potato-leg {
+  fill: #fff7d7;
+  stroke: rgba(189, 133, 79, 0.42);
+  stroke-width: 2.3px;
 }
 
 .potato-ear {
-  position: absolute;
-  top: 18px;
-  z-index: 2;
-  width: 35px;
-  height: 38px;
-  border-radius: 58% 42% 52% 48%;
-  background: var(--potato-fur-shadow);
-  box-shadow:
-    0 0 0 3px rgba(200, 146, 89, 0.28),
-    inset 0 -10px 0 rgba(255, 248, 228, 0.62);
+  fill: var(--potato-fur-warm);
+  stroke: rgba(189, 133, 79, 0.52);
+  stroke-width: 3px;
 }
 
-.potato-ear-left {
-  left: 21px;
-  transform: rotate(-31deg);
+.potato-head-base {
+  fill: var(--potato-fur-light);
+  stroke: rgba(189, 133, 79, 0.6);
+  stroke-width: 3.3px;
 }
 
-.potato-ear-right {
-  right: 21px;
-  transform: rotate(31deg) scaleX(-1);
+.potato-forehead-fluff {
+  fill: var(--potato-fur);
+  stroke: rgba(189, 133, 79, 0.36);
+  stroke-width: 2px;
 }
 
-.potato-face {
-  position: absolute;
-  left: 10px;
-  top: -14px;
-  z-index: 4;
-  width: 112px;
-  height: 112px;
-  border: 3px solid rgba(200, 146, 89, 0.5);
-  border-radius: 50% 50% 48% 52%;
-  background: var(--potato-fur-light);
-  box-shadow:
-    -22px 32px 0 -13px var(--potato-fur),
-    22px 32px 0 -13px var(--potato-fur),
-    0 9px 16px rgba(76, 52, 39, 0.08),
-    inset 0 -10px 0 rgba(237, 210, 154, 0.2);
-}
-
-.potato-face::before,
-.potato-face::after {
-  content: "";
-  position: absolute;
-  bottom: 25px;
-  width: 34px;
-  height: 31px;
-  border-radius: 50%;
-  background: var(--potato-fur);
-}
-
-.potato-face::before {
-  left: 12px;
-  transform: rotate(-10deg);
-}
-
-.potato-face::after {
-  right: 12px;
-  transform: rotate(10deg);
+.potato-face-mask {
+  fill: #fff7dc;
+  opacity: 0.86;
 }
 
 .potato-eye {
-  position: absolute;
-  top: 45px;
-  z-index: 2;
-  width: 16px;
-  height: 17px;
-  border-radius: 50%;
-  background: #2f211d;
-  box-shadow:
-    inset 4px 4px 0 rgba(255, 255, 255, 0.74),
-    0 2px 0 rgba(76, 52, 39, 0.16);
+  fill: #2a1f1b;
 }
 
-.potato-eye-left {
-  left: 30px;
-}
-
-.potato-eye-right {
-  right: 30px;
+.potato-eye-shine {
+  fill: rgba(255, 255, 255, 0.88);
 }
 
 .potato-cheek {
-  position: absolute;
-  top: 64px;
-  z-index: 1;
-  width: 18px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(244, 154, 167, 0.34);
-}
-
-.potato-cheek-left {
-  left: 19px;
-}
-
-.potato-cheek-right {
-  right: 19px;
+  fill: rgba(239, 143, 163, 0.34);
 }
 
 .potato-muzzle {
-  position: absolute;
-  left: 50%;
-  top: 61px;
-  z-index: 2;
-  width: 44px;
-  height: 32px;
-  border-radius: 50%;
-  background: #fff7df;
-  box-shadow: inset 0 -4px 0 rgba(237, 210, 154, 0.12);
-  transform: translateX(-50%);
+  fill: #fff4d7;
+  stroke: rgba(189, 133, 79, 0.24);
+  stroke-width: 1.8px;
 }
 
 .potato-nose {
-  position: absolute;
-  left: 50%;
-  top: 60px;
-  z-index: 3;
-  width: 16px;
-  height: 12px;
-  border-radius: 48% 52% 58% 42%;
-  background: var(--potato-nose);
-  box-shadow: inset 3px 2px 0 rgba(255, 178, 172, 0.26);
-  transform: translateX(-50%);
+  fill: var(--potato-nose);
 }
 
 .potato-smile {
-  position: absolute;
-  left: 50%;
-  top: 70px;
-  z-index: 3;
-  width: 34px;
-  height: 19px;
-  border-bottom: 3px solid var(--potato-nose);
-  border-radius: 0 0 999px 999px;
-  transform: translateX(-50%);
+  fill: none;
+  stroke: var(--potato-nose);
+  stroke-linecap: round;
+  stroke-width: 3.2px;
 }
 
 .potato-tongue {
-  position: absolute;
-  left: 50%;
-  top: 82px;
-  z-index: 4;
-  width: 18px;
-  height: 16px;
-  border-radius: 0 0 999px 999px;
-  background: var(--potato-tongue);
-  transform: translateX(-50%);
+  fill: var(--potato-tongue);
+  stroke: rgba(98, 64, 54, 0.22);
+  stroke-width: 1.4px;
 }
 
-.potato-paw {
-  position: absolute;
-  bottom: 4px;
-  z-index: 5;
-  width: 28px;
-  height: 18px;
-  border-radius: 50%;
-  background: #ffecc2;
-  box-shadow: inset 0 -4px 0 rgba(237, 210, 154, 0.32);
-}
-
-.potato-paw-left {
-  left: 34px;
-}
-
-.potato-paw-right {
-  right: 34px;
+.potato-fur-line {
+  fill: none;
+  stroke: rgba(189, 133, 79, 0.34);
+  stroke-linecap: round;
+  stroke-width: 2px;
 }
 
 .modal-overlay {
@@ -769,86 +589,14 @@ h1 {
   }
 
   .cushion {
-    width: 124px;
-    height: 54px;
-  }
-
-  .potato-character {
-    bottom: 31px;
-    width: 146px;
-    height: 142px;
-  }
-
-  .potato-tail {
-    right: -5px;
-    top: 37px;
-    width: 62px;
-    height: 62px;
-    border-width: 14px;
-  }
-
-  .potato-body {
-    left: 15px;
-    width: 114px;
-    height: 100px;
-  }
-
-  .potato-ear {
-    top: 14px;
-    width: 28px;
-    height: 32px;
-  }
-
-  .potato-fluff-top {
-    top: -11px;
-    width: 38px;
+    width: 156px;
     height: 28px;
   }
 
-  .potato-fluff-left,
-  .potato-fluff-right {
-    top: 34px;
-    width: 34px;
-    height: 43px;
-  }
-
-  .potato-face {
-    left: 9px;
-    top: -12px;
-    width: 94px;
-    height: 94px;
-  }
-
-  .potato-eye {
-    top: 38px;
-    width: 13px;
-    height: 15px;
-  }
-
-  .potato-eye-left {
-    left: 25px;
-  }
-
-  .potato-eye-right {
-    right: 25px;
-  }
-
-  .potato-muzzle {
-    top: 52px;
-    width: 38px;
-    height: 29px;
-  }
-
-  .potato-nose {
-    top: 52px;
-  }
-
-  .potato-smile {
-    top: 59px;
-  }
-
-  .potato-tongue {
-    top: 71px;
+  .potato-character {
+    bottom: 23px;
+    width: 184px;
+    height: 158px;
   }
 
   .side-table {

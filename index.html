@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Potato’s Day</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=0.4.2.1">
 </head>
 <body>
   <main class="home-screen">
@@ -12,7 +12,7 @@
       <p class="subtitle">감자의 하루</p>
       <h1 id="game-title">Potato’s Day</h1>
       <div class="start-panel">
-        <span class="version-badge" aria-label="현재 버전">v0.4.2</span>
+        <span class="version-badge" aria-label="현재 버전">v0.4.2.1</span>
         <button class="workflow-toggle" type="button" aria-label="워크플로우 보기" aria-haspopup="dialog" aria-expanded="false" aria-controls="workflow-modal" title="워크플로우 보기" data-workflow-open>
           <span aria-hidden="true">📒</span>
         </button>
@@ -39,6 +39,28 @@
           </div>
           <div class="potato-character" role="img" aria-label="아이보리색 복슬복슬한 포메라니안 감자">
             <svg class="potato-dog" viewBox="0 0 260 220" aria-hidden="true" focusable="false">
+              <defs>
+                <style>
+                  .potato-ground-shadow { fill: rgba(76, 52, 39, 0.18); }
+                  .potato-tail-outline { fill: none; stroke: rgba(189, 133, 79, 0.7); stroke-linecap: round; stroke-linejoin: round; stroke-width: 36px; }
+                  .potato-tail-fur { fill: none; stroke: #fffdf0; stroke-linecap: round; stroke-linejoin: round; stroke-width: 28px; }
+                  .potato-tail-tip, .potato-body-fluff, .potato-head-fluff { fill: #fffdf0; stroke: rgba(189, 133, 79, 0.34); stroke-width: 2.4px; }
+                  .potato-body-base { fill: #fff3c7; stroke: rgba(189, 133, 79, 0.58); stroke-width: 3px; }
+                  .potato-leg { fill: #fff7d7; stroke: rgba(189, 133, 79, 0.42); stroke-width: 2.3px; }
+                  .potato-ear { fill: #efd28d; stroke: rgba(189, 133, 79, 0.52); stroke-width: 3px; }
+                  .potato-head-base { fill: #fffdf0; stroke: rgba(189, 133, 79, 0.6); stroke-width: 3.3px; }
+                  .potato-forehead-fluff { fill: #fff3c7; stroke: rgba(189, 133, 79, 0.36); stroke-width: 2px; }
+                  .potato-face-mask { fill: #fff7dc; opacity: 0.86; }
+                  .potato-eye { fill: #2a1f1b; }
+                  .potato-eye-shine { fill: rgba(255, 255, 255, 0.88); }
+                  .potato-cheek { fill: rgba(239, 143, 163, 0.34); }
+                  .potato-muzzle { fill: #fff4d7; stroke: rgba(189, 133, 79, 0.24); stroke-width: 1.8px; }
+                  .potato-nose { fill: #624036; }
+                  .potato-smile { fill: none; stroke: #624036; stroke-linecap: round; stroke-width: 3.2px; }
+                  .potato-tongue { fill: #ef8fa3; stroke: rgba(98, 64, 54, 0.22); stroke-width: 1.4px; }
+                  .potato-fur-line { fill: none; stroke: rgba(189, 133, 79, 0.34); stroke-linecap: round; stroke-width: 2px; }
+                </style>
+              </defs>
               <g class="potato-dog-layer">
                 <ellipse class="potato-ground-shadow" cx="133" cy="198" rx="80" ry="14"></ellipse>
 
@@ -106,6 +128,6 @@
     </section>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=0.4.2.1"></script>
 </body>
 </html>

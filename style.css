@@ -56,6 +56,7 @@ button {
 }
 
 .workflow-toggle:focus-visible,
+.call-gamja-button:focus-visible,
 .modal-close:focus-visible {
   outline: 3px solid rgba(216, 137, 69, 0.42);
   outline-offset: 3px;
@@ -134,6 +135,31 @@ h1 {
   margin-top: 8px;
   color: var(--text-main);
   font-weight: 700;
+}
+
+.gamja-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.call-gamja-button {
+  padding: 9px 18px;
+  border: 1px solid rgba(216, 137, 69, 0.36);
+  border-radius: 999px;
+  color: var(--text-main);
+  background: #fff0cf;
+  box-shadow: 0 8px 18px rgba(76, 52, 39, 0.1);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.call-gamja-button:hover {
+  background: #fff8e7;
+  box-shadow: 0 11px 22px rgba(76, 52, 39, 0.12);
+  transform: translateY(-1px);
 }
 
 .room-scene {
@@ -237,7 +263,7 @@ h1 {
   height: 78px;
   border-radius: 50%;
   background:
-    radial-gradient(ellipse at center, rgba(255, 250, 240, 0.35) 0 32%, transparent 33%),
+    radial-gradient(ellipse 46% 18% at 50% 65%, rgba(255, 250, 240, 0.28) 0 58%, transparent 62%),
     var(--peach);
   box-shadow: inset 0 -7px 0 rgba(76, 52, 39, 0.06);
   transform: translateX(-50%);
@@ -322,6 +348,47 @@ h1 {
   transform: rotate(24deg);
 }
 
+.gamja-speech {
+  position: absolute;
+  left: 50%;
+  bottom: 210px;
+  z-index: 7;
+  width: max-content;
+  max-width: min(74%, 230px);
+  margin: 0;
+  padding: 9px 13px;
+  border: 1px solid rgba(216, 137, 69, 0.34);
+  border-radius: 18px;
+  color: var(--text-main);
+  background: rgba(255, 250, 240, 0.94);
+  box-shadow: 0 10px 20px rgba(76, 52, 39, 0.12);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.4;
+  transform: translateX(-50%);
+}
+
+.gamja-speech::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 13px;
+  height: 13px;
+  border-right: 1px solid rgba(216, 137, 69, 0.34);
+  border-bottom: 1px solid rgba(216, 137, 69, 0.34);
+  background: rgba(255, 250, 240, 0.94);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.gamja-speech[hidden] {
+  display: none;
+}
+
+.gamja-speech.is-happy {
+  animation: gamja-bubble-pop 520ms ease;
+}
+
 .gamja-character {
   position: absolute;
   left: 50%;
@@ -331,16 +398,36 @@ h1 {
   transform: translateX(-50%);
 }
 
+.gamja-character::before {
+  content: "♥";
+  position: absolute;
+  top: 16%;
+  right: 18%;
+  z-index: 2;
+  color: rgba(233, 112, 136, 0.9);
+  font-size: 1.25rem;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow:
+    -34px 18px 0 rgba(255, 186, 145, 0.82),
+    28px 17px 0 rgba(233, 112, 136, 0.68);
+}
+
+.gamja-character.is-happy::before {
+  animation: gamja-heart-pop 720ms ease;
+}
+
 .gamja-character::after {
   content: "";
   position: absolute;
-  left: 16%;
-  right: 16%;
-  bottom: 2px;
+  left: 25%;
+  right: 25%;
+  bottom: 24px;
   z-index: -1;
-  height: 18px;
+  height: 16px;
   border-radius: 50%;
-  background: rgba(76, 52, 39, 0.14);
+  background: rgba(76, 52, 39, 0.13);
   filter: blur(2px);
 }
 
@@ -350,6 +437,48 @@ h1 {
   max-width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+.gamja-character.is-happy .gamja-preview-image {
+  animation: gamja-soft-pop 420ms ease;
+}
+
+@keyframes gamja-soft-pop {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  42% {
+    transform: translateY(-5px) scale(1.035);
+  }
+}
+
+@keyframes gamja-heart-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.8);
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-18px) scale(1.12);
+  }
+}
+
+@keyframes gamja-bubble-pop {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+
+  45% {
+    transform: translateX(-50%) scale(1.035);
+  }
 }
 
 .modal-overlay {
@@ -481,9 +610,29 @@ h1 {
     height: 28px;
   }
 
+  .gamja-actions {
+    margin-top: 12px;
+  }
+
+  .call-gamja-button {
+    padding: 8px 15px;
+    font-size: 0.88rem;
+  }
+
+  .gamja-speech {
+    bottom: 180px;
+    max-width: min(78%, 210px);
+    padding: 8px 11px;
+    font-size: 0.84rem;
+  }
+
   .gamja-character {
     bottom: 8px;
     width: clamp(150px, 49vw, 180px);
+  }
+
+  .gamja-character::after {
+    bottom: 21px;
   }
 
   .side-table {
@@ -499,5 +648,13 @@ h1 {
   .modal-card {
     max-height: calc(100vh - 28px);
     padding: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gamja-character.is-happy::before,
+  .gamja-character.is-happy .gamja-preview-image,
+  .gamja-speech.is-happy {
+    animation: none;
   }
 }

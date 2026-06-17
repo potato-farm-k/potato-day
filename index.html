@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Potato’s Day</title>
-  <link rel="stylesheet" href="style.css?v=0.4.4">
+  <link rel="stylesheet" href="style.css?v=0.5">
 </head>
 <body>
   <main class="home-screen">
@@ -12,13 +12,16 @@
       <p class="subtitle">감자의 하루</p>
       <h1 id="game-title">Potato’s Day</h1>
       <div class="start-panel">
-        <span class="version-badge" aria-label="현재 버전">v0.4.4</span>
+        <span class="version-badge" aria-label="현재 버전">v0.5</span>
         <button class="workflow-toggle" type="button" aria-label="워크플로우 보기" aria-haspopup="dialog" aria-expanded="false" aria-controls="workflow-modal" title="워크플로우 보기" data-workflow-open>
           <span aria-hidden="true">📒</span>
         </button>
         <h2>감자의 집</h2>
         <p>감자가 하루를 보내는 조용한 공간입니다.</p>
-        <p class="potato-status">감자는 지금 편안히 쉬고 있어요.</p>
+        <p class="potato-status" aria-live="polite" data-gamja-status>감자는 지금 편안히 쉬고 있어요.</p>
+        <div class="gamja-actions">
+          <button class="call-gamja-button" type="button" aria-label="감자 부르기" data-call-gamja>감자 부르기</button>
+        </div>
 
         <div class="room-scene" aria-label="감자의 집 휴식 공간">
           <div class="room-wall" aria-hidden="true">
@@ -37,6 +40,7 @@
               <span></span>
             </div>
           </div>
+          <p class="gamja-speech" aria-live="polite" data-gamja-message hidden>감자는 지금 편안히 쉬고 있어요.</p>
           <div class="gamja-character gamja-asset-layer">
             <img class="gamja-preview-image" src="assets/characters/gamja-base.png" alt="감자 캐릭터 투명 배경 이미지">
           </div>
@@ -57,6 +61,6 @@
     </section>
   </div>
 
-  <script src="script.js?v=0.4.4"></script>
+  <script src="script.js?v=0.5"></script>
 </body>
 </html>

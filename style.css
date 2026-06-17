@@ -4,12 +4,6 @@
   --text-main: #4c3427;
   --text-soft: #7a5b45;
   --accent: #d88945;
-  --potato-fur: #fff3c7;
-  --potato-fur-light: #fffdf0;
-  --potato-fur-warm: #efd28d;
-  --potato-outline: #bd854f;
-  --potato-nose: #624036;
-  --potato-tongue: #ef8fa3;
   --sage: #89a86f;
   --sky: #b9dce8;
   --peach: #e9909c;
@@ -328,140 +322,34 @@ h1 {
   transform: rotate(24deg);
 }
 
-.potato-character {
+.gamja-character {
   position: absolute;
   left: 50%;
-  bottom: 24px;
+  bottom: 16px;
   z-index: 4;
-  width: 236px;
-  height: 200px;
-  filter: drop-shadow(0 16px 18px rgba(76, 52, 39, 0.2));
+  width: clamp(190px, 34vw, 260px);
   transform: translateX(-50%);
 }
 
-.potato-character::before {
+.gamja-character::after {
   content: "";
   position: absolute;
-  left: 26px;
-  right: 22px;
-  top: 26px;
-  bottom: 12px;
+  left: 16%;
+  right: 16%;
+  bottom: 2px;
   z-index: -1;
+  height: 18px;
   border-radius: 50%;
-  background: rgba(255, 253, 240, 0.78);
-  box-shadow: 0 0 0 9px rgba(255, 253, 240, 0.26);
+  background: rgba(76, 52, 39, 0.14);
+  filter: blur(2px);
 }
 
-.potato-dog {
+.gamja-preview-image {
   display: block;
   width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.potato-ground-shadow {
-  fill: rgba(76, 52, 39, 0.18);
-}
-
-.potato-tail-outline {
-  fill: none;
-  stroke: rgba(189, 133, 79, 0.7);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 36px;
-}
-
-.potato-tail-fur {
-  fill: none;
-  stroke: var(--potato-fur-light);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 28px;
-}
-
-.potato-tail-tip,
-.potato-body-fluff,
-.potato-head-fluff {
-  fill: var(--potato-fur-light);
-  stroke: rgba(189, 133, 79, 0.34);
-  stroke-width: 2.4px;
-}
-
-.potato-body-base {
-  fill: var(--potato-fur);
-  stroke: rgba(189, 133, 79, 0.58);
-  stroke-width: 3px;
-}
-
-.potato-leg {
-  fill: #fff7d7;
-  stroke: rgba(189, 133, 79, 0.42);
-  stroke-width: 2.3px;
-}
-
-.potato-ear {
-  fill: var(--potato-fur-warm);
-  stroke: rgba(189, 133, 79, 0.52);
-  stroke-width: 3px;
-}
-
-.potato-head-base {
-  fill: var(--potato-fur-light);
-  stroke: rgba(189, 133, 79, 0.6);
-  stroke-width: 3.3px;
-}
-
-.potato-forehead-fluff {
-  fill: var(--potato-fur);
-  stroke: rgba(189, 133, 79, 0.36);
-  stroke-width: 2px;
-}
-
-.potato-face-mask {
-  fill: #fff7dc;
-  opacity: 0.86;
-}
-
-.potato-eye {
-  fill: #2a1f1b;
-}
-
-.potato-eye-shine {
-  fill: rgba(255, 255, 255, 0.88);
-}
-
-.potato-cheek {
-  fill: rgba(239, 143, 163, 0.34);
-}
-
-.potato-muzzle {
-  fill: #fff4d7;
-  stroke: rgba(189, 133, 79, 0.24);
-  stroke-width: 1.8px;
-}
-
-.potato-nose {
-  fill: var(--potato-nose);
-}
-
-.potato-smile {
-  fill: none;
-  stroke: var(--potato-nose);
-  stroke-linecap: round;
-  stroke-width: 3.2px;
-}
-
-.potato-tongue {
-  fill: var(--potato-tongue);
-  stroke: rgba(98, 64, 54, 0.22);
-  stroke-width: 1.4px;
-}
-
-.potato-fur-line {
-  fill: none;
-  stroke: rgba(189, 133, 79, 0.34);
-  stroke-linecap: round;
-  stroke-width: 2px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .modal-overlay {
@@ -593,10 +481,9 @@ h1 {
     height: 28px;
   }
 
-  .potato-character {
-    bottom: 23px;
-    width: 184px;
-    height: 158px;
+  .gamja-character {
+    bottom: 18px;
+    width: clamp(168px, 58vw, 210px);
   }
 
   .side-table {

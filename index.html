@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Potato’s Day</title>
-  <link rel="stylesheet" href="style.css?v=0.4.2.1">
+  <link rel="stylesheet" href="style.css?v=0.4.3-preview">
 </head>
 <body>
   <main class="home-screen">
@@ -12,7 +12,7 @@
       <p class="subtitle">감자의 하루</p>
       <h1 id="game-title">Potato’s Day</h1>
       <div class="start-panel">
-        <span class="version-badge" aria-label="현재 버전">v0.4.2.1</span>
+        <span class="version-badge" aria-label="현재 버전">v0.4.3-preview</span>
         <button class="workflow-toggle" type="button" aria-label="워크플로우 보기" aria-haspopup="dialog" aria-expanded="false" aria-controls="workflow-modal" title="워크플로우 보기" data-workflow-open>
           <span aria-hidden="true">📒</span>
         </button>
@@ -37,79 +37,8 @@
               <span></span>
             </div>
           </div>
-          <div class="potato-character" role="img" aria-label="아이보리색 복슬복슬한 포메라니안 감자">
-            <svg class="potato-dog" viewBox="0 0 260 220" aria-hidden="true" focusable="false">
-              <defs>
-                <style>
-                  .potato-ground-shadow { fill: rgba(76, 52, 39, 0.18); }
-                  .potato-tail-outline { fill: none; stroke: rgba(189, 133, 79, 0.7); stroke-linecap: round; stroke-linejoin: round; stroke-width: 36px; }
-                  .potato-tail-fur { fill: none; stroke: #fffdf0; stroke-linecap: round; stroke-linejoin: round; stroke-width: 28px; }
-                  .potato-tail-tip, .potato-body-fluff, .potato-head-fluff { fill: #fffdf0; stroke: rgba(189, 133, 79, 0.34); stroke-width: 2.4px; }
-                  .potato-body-base { fill: #fff3c7; stroke: rgba(189, 133, 79, 0.58); stroke-width: 3px; }
-                  .potato-leg { fill: #fff7d7; stroke: rgba(189, 133, 79, 0.42); stroke-width: 2.3px; }
-                  .potato-ear { fill: #efd28d; stroke: rgba(189, 133, 79, 0.52); stroke-width: 3px; }
-                  .potato-head-base { fill: #fffdf0; stroke: rgba(189, 133, 79, 0.6); stroke-width: 3.3px; }
-                  .potato-forehead-fluff { fill: #fff3c7; stroke: rgba(189, 133, 79, 0.36); stroke-width: 2px; }
-                  .potato-face-mask { fill: #fff7dc; opacity: 0.86; }
-                  .potato-eye { fill: #2a1f1b; }
-                  .potato-eye-shine { fill: rgba(255, 255, 255, 0.88); }
-                  .potato-cheek { fill: rgba(239, 143, 163, 0.34); }
-                  .potato-muzzle { fill: #fff4d7; stroke: rgba(189, 133, 79, 0.24); stroke-width: 1.8px; }
-                  .potato-nose { fill: #624036; }
-                  .potato-smile { fill: none; stroke: #624036; stroke-linecap: round; stroke-width: 3.2px; }
-                  .potato-tongue { fill: #ef8fa3; stroke: rgba(98, 64, 54, 0.22); stroke-width: 1.4px; }
-                  .potato-fur-line { fill: none; stroke: rgba(189, 133, 79, 0.34); stroke-linecap: round; stroke-width: 2px; }
-                </style>
-              </defs>
-              <g class="potato-dog-layer">
-                <ellipse class="potato-ground-shadow" cx="133" cy="198" rx="80" ry="14"></ellipse>
-
-                <g class="potato-tail">
-                  <path class="potato-tail-outline" d="M183 136 C228 132 234 84 202 76 C176 69 160 94 174 111 C186 125 205 116 202 101"></path>
-                  <path class="potato-tail-fur" d="M183 136 C228 132 234 84 202 76 C176 69 160 94 174 111 C186 125 205 116 202 101"></path>
-                  <circle class="potato-tail-tip" cx="202" cy="99" r="13"></circle>
-                </g>
-
-                <g class="potato-body">
-                  <circle class="potato-body-fluff" cx="88" cy="138" r="28"></circle>
-                  <circle class="potato-body-fluff" cx="116" cy="116" r="35"></circle>
-                  <circle class="potato-body-fluff" cx="156" cy="122" r="37"></circle>
-                  <circle class="potato-body-fluff" cx="178" cy="151" r="30"></circle>
-                  <path class="potato-body-base" d="M74 145 C72 113 103 95 143 98 C181 101 204 128 196 158 C190 184 160 198 120 193 C89 190 73 172 74 145Z"></path>
-                  <ellipse class="potato-leg potato-leg-back" cx="158" cy="184" rx="18" ry="13"></ellipse>
-                  <ellipse class="potato-leg potato-leg-front" cx="104" cy="184" rx="19" ry="13"></ellipse>
-                </g>
-
-                <g class="potato-head" transform="translate(-14 0)">
-                  <path class="potato-ear potato-ear-left" d="M79 55 C68 30 85 18 105 38 C98 50 91 59 79 55Z"></path>
-                  <path class="potato-ear potato-ear-right" d="M158 53 C171 30 189 22 194 50 C181 55 171 59 158 53Z"></path>
-                  <circle class="potato-head-fluff" cx="82" cy="73" r="28"></circle>
-                  <circle class="potato-head-fluff" cx="103" cy="47" r="31"></circle>
-                  <circle class="potato-head-fluff" cx="134" cy="43" r="34"></circle>
-                  <circle class="potato-head-fluff" cx="162" cy="63" r="31"></circle>
-                  <circle class="potato-head-fluff" cx="171" cy="96" r="31"></circle>
-                  <circle class="potato-head-fluff" cx="147" cy="124" r="34"></circle>
-                  <circle class="potato-head-fluff" cx="106" cy="127" r="36"></circle>
-                  <circle class="potato-head-fluff" cx="76" cy="105" r="30"></circle>
-                  <path class="potato-head-base" d="M64 86 C61 48 96 24 131 27 C166 30 188 59 183 94 C178 129 150 151 110 148 C79 146 62 121 64 86Z"></path>
-                  <path class="potato-forehead-fluff" d="M103 44 C114 31 130 31 138 44 C124 38 113 39 103 44Z"></path>
-                  <path class="potato-face-mask" d="M89 92 C91 70 108 59 127 60 C149 62 163 78 163 99 C160 125 140 137 117 134 C97 131 87 115 89 92Z"></path>
-                  <ellipse class="potato-eye potato-eye-left" cx="109" cy="89" rx="9" ry="10"></ellipse>
-                  <ellipse class="potato-eye potato-eye-right" cx="146" cy="91" rx="9" ry="10"></ellipse>
-                  <circle class="potato-eye-shine potato-eye-shine-left" cx="106" cy="86" r="3"></circle>
-                  <circle class="potato-eye-shine potato-eye-shine-right" cx="143" cy="88" r="3"></circle>
-                  <ellipse class="potato-cheek potato-cheek-left" cx="94" cy="108" rx="13" ry="8"></ellipse>
-                  <ellipse class="potato-cheek potato-cheek-right" cx="161" cy="110" rx="13" ry="8"></ellipse>
-                  <ellipse class="potato-muzzle" cx="128" cy="111" rx="27" ry="20"></ellipse>
-                  <path class="potato-nose" d="M118 102 C121 95 134 95 138 103 C137 112 120 112 118 102Z"></path>
-                  <path class="potato-smile" d="M121 116 C124 123 133 123 137 116"></path>
-                  <path class="potato-tongue" d="M122 122 C127 136 140 132 139 122 C135 126 128 126 122 122Z"></path>
-                  <path class="potato-fur-line" d="M82 83 C72 89 70 102 76 111"></path>
-                  <path class="potato-fur-line" d="M170 83 C180 92 179 106 171 115"></path>
-                  <path class="potato-fur-line" d="M112 137 C123 142 139 141 149 135"></path>
-                </g>
-              </g>
-            </svg>
+          <div class="gamja-character gamja-asset-layer">
+            <img class="gamja-preview-image" src="assets/characters/gamja-base-source.png" alt="감자 캐릭터 기준 이미지">
           </div>
         </div>
       </div>
@@ -128,6 +57,6 @@
     </section>
   </div>
 
-  <script src="script.js?v=0.4.2.1"></script>
+  <script src="script.js?v=0.4.3-preview"></script>
 </body>
 </html>

@@ -325,9 +325,9 @@ h1 {
 .gamja-character {
   position: absolute;
   left: 50%;
-  bottom: 16px;
+  bottom: 6px;
   z-index: 4;
-  width: clamp(190px, 34vw, 260px);
+  width: clamp(162px, 29vw, 218px);
   transform: translateX(-50%);
 }
 
@@ -482,8 +482,8 @@ h1 {
   }
 
   .gamja-character {
-    bottom: 18px;
-    width: clamp(168px, 58vw, 210px);
+    bottom: 8px;
+    width: clamp(150px, 49vw, 180px);
   }
 
   .side-table {

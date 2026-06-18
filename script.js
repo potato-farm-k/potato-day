@@ -1,4 +1,4 @@
-console.log("Potato’s Day v0.5");
+console.log("Potato’s Day v0.6");
 
 const workflowOpenButton = document.querySelector("[data-workflow-open]");
 const workflowModal = document.querySelector("#workflow-modal");
@@ -58,6 +58,7 @@ if (gamjaCallButton && gamjaStatus && gamjaMessage && gamjaCharacter) {
     gamjaCharacter.classList.remove("is-happy");
     gamjaMessage.classList.remove("is-happy");
     window.clearTimeout(gamjaReactionTimer);
+    void gamjaCharacter.offsetWidth;
 
     requestAnimationFrame(() => {
       gamjaCharacter.classList.add("is-happy");

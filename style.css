@@ -398,6 +398,13 @@ h1 {
   transform: translateX(-50%);
 }
 
+.gamja-motion {
+  display: block;
+  animation: gamja-idle-breathe 4.6s ease-in-out infinite;
+  transform-origin: 50% 92%;
+  will-change: transform;
+}
+
 .gamja-character::before {
   content: "♥";
   position: absolute;
@@ -429,6 +436,9 @@ h1 {
   border-radius: 50%;
   background: rgba(76, 52, 39, 0.13);
   filter: blur(2px);
+  opacity: 0.95;
+  transform-origin: center;
+  animation: gamja-shadow-breathe 4.6s ease-in-out infinite;
 }
 
 .gamja-preview-image {
@@ -440,7 +450,72 @@ h1 {
 }
 
 .gamja-character.is-happy .gamja-preview-image {
-  animation: gamja-soft-pop 420ms ease;
+  animation: gamja-soft-pop 460ms ease;
+}
+
+.gamja-character.is-happy .gamja-motion {
+  animation: gamja-called-bounce 560ms ease;
+}
+
+.gamja-character.is-happy::after {
+  animation: gamja-shadow-called 560ms ease;
+}
+
+@keyframes gamja-idle-breathe {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-2px) scale(1.006);
+  }
+}
+
+@keyframes gamja-shadow-breathe {
+  0%,
+  100% {
+    opacity: 0.95;
+    transform: scaleX(1);
+  }
+
+  50% {
+    opacity: 0.86;
+    transform: scaleX(0.96);
+  }
+}
+
+@keyframes gamja-called-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  34% {
+    transform: translateY(-7px) scale(1.025);
+  }
+
+  68% {
+    transform: translateY(1px) scale(0.996);
+  }
+}
+
+@keyframes gamja-shadow-called {
+  0%,
+  100% {
+    opacity: 0.95;
+    transform: scaleX(1);
+  }
+
+  34% {
+    opacity: 0.8;
+    transform: scaleX(0.88);
+  }
+
+  68% {
+    opacity: 0.98;
+    transform: scaleX(1.03);
+  }
 }
 
 @keyframes gamja-soft-pop {
@@ -450,7 +525,7 @@ h1 {
   }
 
   42% {
-    transform: translateY(-5px) scale(1.035);
+    transform: translateY(-2px) scale(1.018);
   }
 }
 
@@ -652,7 +727,11 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .gamja-motion,
+  .gamja-character::after,
   .gamja-character.is-happy::before,
+  .gamja-character.is-happy .gamja-motion,
+  .gamja-character.is-happy::after,
   .gamja-character.is-happy .gamja-preview-image,
   .gamja-speech.is-happy {
     animation: none;

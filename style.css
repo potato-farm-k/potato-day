@@ -257,7 +257,8 @@ h1 {
   animation: ball-toy-bounce 620ms ease;
 }
 
-.ball-game-hint {
+.ball-game-view .ball-game-hint {
+  width: min(100%, 360px);
   max-width: 360px;
   margin: 6px auto 0;
   text-align: center;
@@ -864,7 +865,8 @@ h1 {
     margin-bottom: 18px;
   }
 
-  .ball-game-hint {
+  .ball-game-view .ball-game-hint {
+    width: min(100%, 270px);
     max-width: 270px;
   }
 

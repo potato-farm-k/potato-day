@@ -58,6 +58,7 @@ button {
 .workflow-toggle:focus-visible,
 .call-gamja-button:focus-visible,
 .ball-game-button:focus-visible,
+.tap-ball-button:focus-visible,
 .sound-toggle:focus-visible,
 .return-home-button:focus-visible,
 .modal-close:focus-visible {
@@ -155,6 +156,7 @@ h1 {
 
 .call-gamja-button,
 .ball-game-button,
+.tap-ball-button,
 .return-home-button,
 .sound-toggle {
   padding: 9px 18px;
@@ -173,8 +175,13 @@ h1 {
   background: #ffe2d1;
 }
 
+.tap-ball-button {
+  margin-top: 14px;
+  background: #ffe2d1;
+}
+
 .return-home-button {
-  margin-top: 18px;
+  margin-top: 10px;
   background: #fff0cf;
 }
 
@@ -191,6 +198,7 @@ h1 {
 
 .call-gamja-button:hover,
 .ball-game-button:hover,
+.tap-ball-button:hover,
 .return-home-button:hover,
 .sound-toggle:hover {
   background: #fff8e7;
@@ -198,7 +206,7 @@ h1 {
   transform: translateY(-1px);
 }
 
-.ball-game-intro-view {
+.ball-game-view {
   min-height: 486px;
   padding: 36px 0 18px;
 }
@@ -228,7 +236,7 @@ h1 {
   transform: translateX(-50%);
 }
 
-.practice-ball {
+.play-ball {
   position: absolute;
   left: 50%;
   bottom: 54px;
@@ -243,10 +251,25 @@ h1 {
   transform: translateX(-50%);
 }
 
-.ball-game-note {
-  margin-top: 6px;
+.play-ball.is-bouncing {
+  animation: ball-toy-bounce 620ms ease;
+}
+
+.ball-game-message {
+  width: fit-content;
+  max-width: min(100%, 340px);
+  margin: 12px auto 0;
+  padding: 9px 14px;
+  border: 1px solid rgba(216, 137, 69, 0.28);
+  border-radius: 18px;
   color: var(--text-main);
+  background: rgba(255, 250, 240, 0.78);
+  box-shadow: 0 8px 18px rgba(76, 52, 39, 0.08);
   font-weight: 700;
+}
+
+.ball-game-message[hidden] {
+  display: none;
 }
 
 .room-scene {
@@ -643,6 +666,25 @@ h1 {
   }
 }
 
+@keyframes ball-toy-bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+  }
+
+  24% {
+    transform: translateX(calc(-50% + 18px)) translateY(-30px) rotate(18deg);
+  }
+
+  52% {
+    transform: translateX(calc(-50% - 10px)) translateY(2px) rotate(-10deg);
+  }
+
+  74% {
+    transform: translateX(calc(-50% + 6px)) translateY(-12px) rotate(8deg);
+  }
+}
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -778,6 +820,7 @@ h1 {
 
   .call-gamja-button,
   .ball-game-button,
+  .tap-ball-button,
   .return-home-button {
     padding: 8px 15px;
     font-size: 0.88rem;
@@ -788,7 +831,7 @@ h1 {
     font-size: 0.78rem;
   }
 
-  .ball-game-intro-view {
+  .ball-game-view {
     min-height: 430px;
     padding: 30px 0 12px;
   }
@@ -796,6 +839,12 @@ h1 {
   .ball-game-preview {
     height: 166px;
     margin-bottom: 20px;
+  }
+
+  .ball-game-message {
+    max-width: min(100%, 250px);
+    padding: 8px 12px;
+    font-size: 0.86rem;
   }
 
   .gamja-speech {
@@ -837,7 +886,8 @@ h1 {
   .gamja-character.is-happy .gamja-motion,
   .gamja-character.is-happy::after,
   .gamja-character.is-happy .gamja-preview-image,
-  .gamja-speech.is-happy {
+  .gamja-speech.is-happy,
+  .play-ball.is-bouncing {
     animation: none;
   }
 }

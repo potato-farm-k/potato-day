@@ -1,12 +1,15 @@
-console.log("Potato’s Day v0.8");
+console.log("Potato’s Day v0.9");
 
 const workflowOpenButton = document.querySelector("[data-workflow-open]");
 const workflowModal = document.querySelector("#workflow-modal");
 const workflowCloseButton = document.querySelector("[data-workflow-close]");
 const homeView = document.querySelector("[data-home-view]");
-const ballGameIntroView = document.querySelector("[data-ball-game-intro-view]");
+const ballGameView = document.querySelector("[data-ball-game-view]");
 const ballGameOpenButton = document.querySelector("[data-ball-game-open]");
 const returnHomeButton = document.querySelector("[data-return-home]");
+const tapBallButton = document.querySelector("[data-tap-ball]");
+const playBall = document.querySelector("[data-play-ball]");
+const ballGameMessage = document.querySelector("[data-ball-game-message]");
 const gamjaCallButton = document.querySelector("[data-call-gamja]");
 const soundToggleButton = document.querySelector("[data-sound-toggle]");
 const gamjaStatus = document.querySelector("[data-gamja-status]");
@@ -18,9 +21,17 @@ const gamjaResponses = [
   "오늘도 같이 쉬어요.",
   "감자가 반갑게 바라봅니다.",
 ];
+const ballGameResponses = [
+  "감자가 공을 톡 쳤어요!",
+  "공이 통통 굴러가요.",
+  "감자가 신나게 바라봅니다.",
+  "감자가 꼬리를 흔드는 기분이에요.",
+];
 
 let gamjaResponseIndex = 0;
+let ballGameResponseIndex = 0;
 let gamjaReactionTimer;
+let ballReactionTimer;
 let isSoundEnabled = true;
 let gamjaAudioContext;
 let didLogAudioUnsupported = false;
@@ -54,24 +65,29 @@ if (workflowOpenButton && workflowModal && workflowCloseButton) {
   });
 }
 
-if (homeView && ballGameIntroView && ballGameOpenButton && returnHomeButton) {
+if (homeView && ballGameView && ballGameOpenButton && returnHomeButton) {
   const showHomeView = () => {
     homeView.hidden = false;
     homeView.classList.remove("is-hidden");
-    ballGameIntroView.hidden = true;
-    ballGameIntroView.classList.add("is-hidden");
+    ballGameView.hidden = true;
+    ballGameView.classList.add("is-hidden");
     ballGameOpenButton.focus();
   };
 
-  const showBallGameIntroView = () => {
+  const showBallGameView = () => {
     homeView.hidden = true;
     homeView.classList.add("is-hidden");
-    ballGameIntroView.hidden = false;
-    ballGameIntroView.classList.remove("is-hidden");
-    returnHomeButton.focus();
+    ballGameView.hidden = false;
+    ballGameView.classList.remove("is-hidden");
+
+    if (tapBallButton) {
+      tapBallButton.focus();
+    } else {
+      returnHomeButton.focus();
+    }
   };
 
-  ballGameOpenButton.addEventListener("click", showBallGameIntroView);
+  ballGameOpenButton.addEventListener("click", showBallGameView);
   returnHomeButton.addEventListener("click", showHomeView);
 }
 
@@ -120,7 +136,7 @@ const playGamjaSound = () => {
       const now = audioContext.currentTime;
       const output = audioContext.createGain();
       output.gain.setValueAtTime(0.0001, now);
-      output.gain.exponentialRampToValueAtTime(0.045, now + 0.018);
+      output.gain.exponentialRampToValueAtTime(0.06, now + 0.018);
       output.gain.exponentialRampToValueAtTime(0.0001, now + 0.24);
       output.connect(audioContext.destination);
 
@@ -165,6 +181,29 @@ if (soundToggleButton) {
   soundToggleButton.addEventListener("click", () => {
     isSoundEnabled = !isSoundEnabled;
     updateSoundToggle();
+  });
+}
+
+if (tapBallButton && playBall && ballGameMessage) {
+  tapBallButton.addEventListener("click", () => {
+    const response = ballGameResponses[ballGameResponseIndex % ballGameResponses.length];
+    ballGameResponseIndex += 1;
+    playGamjaSound();
+
+    ballGameMessage.textContent = response;
+    ballGameMessage.hidden = false;
+
+    playBall.classList.remove("is-bouncing");
+    window.clearTimeout(ballReactionTimer);
+    void playBall.offsetWidth;
+
+    requestAnimationFrame(() => {
+      playBall.classList.add("is-bouncing");
+    });
+
+    ballReactionTimer = window.setTimeout(() => {
+      playBall.classList.remove("is-bouncing");
+    }, 650);
   });
 }
 

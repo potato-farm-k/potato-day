@@ -1,4 +1,4 @@
-console.log("Potato’s Day v1.1");
+console.log("Potato’s Day v1.2");
 
 const workflowOpenButton = document.querySelector("[data-workflow-open]");
 const workflowModal = document.querySelector("#workflow-modal");
@@ -39,12 +39,21 @@ const ballPlayStateMessages = {
   [BALL_PLAY_STATES.GAMJA_REACTING]: "감자가 공을 바라보고 있어요.",
   [BALL_PLAY_STATES.RETURNING]: "공이 다시 제자리로 돌아와요.",
 };
+const ballPlayStateClasses = {
+  [BALL_PLAY_STATES.ROLLING]: "is-rolling-to-gamja",
+  [BALL_PLAY_STATES.GAMJA_REACTING]: "is-near-gamja",
+  [BALL_PLAY_STATES.RETURNING]: "is-returning-home",
+};
+const BALL_PLAY_TIMING = Object.freeze({
+  GAMJA_REACTING: 760,
+  RETURNING: 1180,
+  READY: 1940,
+});
 
 let gamjaResponseIndex = 0;
 let ballGameResponseIndex = 0;
 let ballPlayState = BALL_PLAY_STATES.READY;
 let gamjaReactionTimer;
-let ballReactionTimer;
 let ballRoundTimers = [];
 let isSoundEnabled = true;
 let gamjaAudioContext;
@@ -221,6 +230,22 @@ const updateBallPlayButton = () => {
   tapBallButton.disabled = ballPlayState !== BALL_PLAY_STATES.READY;
 };
 
+const updateBallPlayVisualState = () => {
+  if (!playBall) {
+    return;
+  }
+
+  Object.values(ballPlayStateClasses).forEach((stateClass) => {
+    playBall.classList.remove(stateClass);
+  });
+
+  const nextStateClass = ballPlayStateClasses[ballPlayState];
+
+  if (nextStateClass) {
+    playBall.classList.add(nextStateClass);
+  }
+};
+
 const setBallPlayState = (nextState, message = ballPlayStateMessages[nextState]) => {
   if (!Object.values(BALL_PLAY_STATES).includes(nextState)) {
     return;
@@ -237,6 +262,7 @@ const setBallPlayState = (nextState, message = ballPlayStateMessages[nextState])
     ballGameMessage.hidden = false;
   }
 
+  updateBallPlayVisualState();
   updateBallPlayButton();
 };
 
@@ -246,24 +272,6 @@ const queueBallPlayState = (nextState, delay, message) => {
   }, delay);
 
   ballRoundTimers.push(timer);
-};
-
-const playBallBounce = () => {
-  if (!playBall) {
-    return;
-  }
-
-  playBall.classList.remove("is-bouncing");
-  window.clearTimeout(ballReactionTimer);
-  void playBall.offsetWidth;
-
-  requestAnimationFrame(() => {
-    playBall.classList.add("is-bouncing");
-  });
-
-  ballReactionTimer = window.setTimeout(() => {
-    playBall.classList.remove("is-bouncing");
-  }, 650);
 };
 
 const resetBallPlayRound = () => {
@@ -280,11 +288,10 @@ const startBallPlayRound = () => {
 
   clearBallRoundTimers();
   playGamjaSound();
-  playBallBounce();
   setBallPlayState(BALL_PLAY_STATES.ROLLING);
-  queueBallPlayState(BALL_PLAY_STATES.GAMJA_REACTING, 420, response);
-  queueBallPlayState(BALL_PLAY_STATES.RETURNING, 920);
-  queueBallPlayState(BALL_PLAY_STATES.READY, 1320);
+  queueBallPlayState(BALL_PLAY_STATES.GAMJA_REACTING, BALL_PLAY_TIMING.GAMJA_REACTING, response);
+  queueBallPlayState(BALL_PLAY_STATES.RETURNING, BALL_PLAY_TIMING.RETURNING);
+  queueBallPlayState(BALL_PLAY_STATES.READY, BALL_PLAY_TIMING.READY);
 };
 
 if (tapBallButton && playBall && ballGameMessage) {

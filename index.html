@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Potato’s Day</title>
-  <link rel="stylesheet" href="style.css?v=0.9">
+  <link rel="stylesheet" href="style.css?v=1.0">
 </head>
 <body>
   <main class="home-screen">
@@ -12,13 +12,14 @@
       <p class="subtitle">감자의 하루</p>
       <h1 id="game-title">Potato’s Day</h1>
       <div class="start-panel">
-        <span class="version-badge" aria-label="현재 버전">v0.9</span>
+        <span class="version-badge" aria-label="현재 버전">v1.0</span>
         <button class="workflow-toggle" type="button" aria-label="워크플로우 보기" aria-haspopup="dialog" aria-expanded="false" aria-controls="workflow-modal" title="워크플로우 보기" data-workflow-open>
           <span aria-hidden="true">📒</span>
         </button>
         <div class="home-view" data-home-view>
           <h2>감자의 집</h2>
-          <p>감자가 하루를 보내는 조용한 공간입니다.</p>
+          <p>감자가 하루를 보내는 조용한 집이에요.</p>
+          <p class="home-note">감자를 불러보고, 함께 쉬어가세요.</p>
           <p class="potato-status" aria-live="polite" data-gamja-status>감자는 지금 편안히 쉬고 있어요.</p>
           <div class="gamja-actions">
             <button class="call-gamja-button" type="button" aria-label="감자 부르기" data-call-gamja>감자 부르기</button>
@@ -57,11 +58,14 @@
             <span class="play-ball" data-play-ball></span>
           </div>
           <h2 id="ball-game-title">감자와 공놀이</h2>
-          <p>감자가 공을 바라보고 있어요.</p>
-          <p>공을 톡 치면 감자가 신나게 바라봐요.</p>
+          <p>감자와 공놀이를 해볼까요?</p>
+          <p>버튼을 누르면 공이 통통 움직여요.</p>
+          <p class="ball-game-hint">점수도 실패도 없이, 감자와 가볍게 놀아보세요.</p>
           <p class="ball-game-message" aria-live="polite" data-ball-game-message hidden>감자가 공을 기다리고 있어요.</p>
-          <button class="tap-ball-button" type="button" aria-label="공을 톡 치기" data-tap-ball>공 톡 치기</button>
-          <button class="return-home-button" type="button" aria-label="감자의 집으로 돌아가기" data-return-home>감자의 집으로 돌아가기</button>
+          <div class="ball-game-actions">
+            <button class="tap-ball-button" type="button" aria-label="공을 톡 치기" data-tap-ball>공 톡 치기</button>
+            <button class="return-home-button" type="button" aria-label="감자의 집으로 돌아가기" data-return-home>감자의 집으로 돌아가기</button>
+          </div>
         </section>
       </div>
     </section>
@@ -79,6 +83,6 @@
     </section>
   </div>
 
-  <script src="script.js?v=0.9"></script>
+  <script src="script.js?v=1.0"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-console.log("Potato’s Day v0.9");
+console.log("Potato’s Day v1.0");
 
 const workflowOpenButton = document.querySelector("[data-workflow-open]");
 const workflowModal = document.querySelector("#workflow-modal");

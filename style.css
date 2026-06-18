@@ -141,6 +141,10 @@ h1 {
   font-weight: 700;
 }
 
+.home-note {
+  margin-top: 4px;
+}
+
 .is-hidden {
   display: none;
 }
@@ -176,12 +180,10 @@ h1 {
 }
 
 .tap-ball-button {
-  margin-top: 14px;
   background: #ffe2d1;
 }
 
 .return-home-button {
-  margin-top: 10px;
   background: #fff0cf;
 }
 
@@ -208,14 +210,14 @@ h1 {
 
 .ball-game-view {
   min-height: 486px;
-  padding: 36px 0 18px;
+  padding: 34px 0 18px;
 }
 
 .ball-game-preview {
   position: relative;
   width: min(100%, 420px);
   height: 190px;
-  margin: 0 auto 22px;
+  margin: 0 auto 20px;
   border-radius: 8px;
   overflow: hidden;
   background:
@@ -255,6 +257,11 @@ h1 {
   animation: ball-toy-bounce 620ms ease;
 }
 
+.ball-game-hint {
+  max-width: 360px;
+  margin: 6px auto 0;
+}
+
 .ball-game-message {
   width: fit-content;
   max-width: min(100%, 340px);
@@ -270,6 +277,14 @@ h1 {
 
 .ball-game-message[hidden] {
   display: none;
+}
+
+.ball-game-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 14px;
 }
 
 .room-scene {
@@ -833,12 +848,16 @@ h1 {
 
   .ball-game-view {
     min-height: 430px;
-    padding: 30px 0 12px;
+    padding: 28px 0 12px;
   }
 
   .ball-game-preview {
     height: 166px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
+  }
+
+  .ball-game-hint {
+    max-width: 270px;
   }
 
   .ball-game-message {

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Potato’s Day</title>
-  <link rel="stylesheet" href="style.css?v=1.2">
+  <link rel="stylesheet" href="style.css?v=1.3">
 </head>
 <body>
   <main class="home-screen">
@@ -12,15 +12,14 @@
       <p class="subtitle">감자의 하루</p>
       <h1 id="game-title">Potato’s Day</h1>
       <div class="start-panel">
-        <span class="version-badge" aria-label="현재 버전">v1.2</span>
+        <span class="version-badge" aria-label="현재 버전">v1.3</span>
         <button class="workflow-toggle" type="button" aria-label="워크플로우 보기" aria-haspopup="dialog" aria-expanded="false" aria-controls="workflow-modal" title="워크플로우 보기" data-workflow-open>
           <span aria-hidden="true">📒</span>
         </button>
-        <div class="home-view" data-home-view>
+        <div class="home-view game-view" data-home-view>
           <h2>감자의 집</h2>
           <p>감자가 하루를 보내는 조용한 집이에요.</p>
           <p class="home-note">감자를 불러보고, 함께 쉬어가세요.</p>
-          <p class="potato-status" aria-live="polite" data-gamja-status>감자는 지금 편안히 쉬고 있어요.</p>
           <div class="gamja-actions">
             <button class="call-gamja-button" type="button" aria-label="감자 부르기" data-call-gamja>감자 부르기</button>
             <button class="ball-game-button" type="button" aria-label="공놀이 화면으로 이동" data-ball-game-open>공놀이 하러 가기</button>
@@ -53,8 +52,11 @@
           </div>
         </div>
 
-        <section class="ball-game-view is-hidden" aria-labelledby="ball-game-title" data-ball-game-view hidden>
+        <section class="ball-game-view game-view is-hidden" aria-labelledby="ball-game-title" data-ball-game-view hidden>
           <div class="ball-game-preview" aria-label="공놀이 장면">
+            <div class="ball-play-gamja" data-ball-play-gamja>
+              <img class="ball-play-gamja-image" src="assets/characters/gamja-base.png" alt="공놀이 중인 감자 캐릭터">
+            </div>
             <span class="play-ball" aria-hidden="true" data-play-ball></span>
             <p class="ball-game-message" aria-live="polite" data-ball-game-message hidden>감자가 공을 기다리고 있어요.</p>
           </div>
@@ -83,6 +85,6 @@
     </section>
   </div>
 
-  <script src="script.js?v=1.2"></script>
+  <script src="script.js?v=1.3"></script>
 </body>
 </html>

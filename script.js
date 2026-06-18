@@ -1,4 +1,4 @@
-console.log("Potato’s Day v1.2");
+console.log("Potato’s Day v1.3");
 
 const workflowOpenButton = document.querySelector("[data-workflow-open]");
 const workflowModal = document.querySelector("#workflow-modal");
@@ -9,10 +9,10 @@ const ballGameOpenButton = document.querySelector("[data-ball-game-open]");
 const returnHomeButton = document.querySelector("[data-return-home]");
 const tapBallButton = document.querySelector("[data-tap-ball]");
 const playBall = document.querySelector("[data-play-ball]");
+const ballPlayGamja = document.querySelector("[data-ball-play-gamja]");
 const ballGameMessage = document.querySelector("[data-ball-game-message]");
 const gamjaCallButton = document.querySelector("[data-call-gamja]");
 const soundToggleButton = document.querySelector("[data-sound-toggle]");
-const gamjaStatus = document.querySelector("[data-gamja-status]");
 const gamjaMessage = document.querySelector("[data-gamja-message]");
 const gamjaCharacter = document.querySelector(".gamja-character");
 const gamjaResponses = [
@@ -231,18 +231,20 @@ const updateBallPlayButton = () => {
 };
 
 const updateBallPlayVisualState = () => {
-  if (!playBall) {
-    return;
+  if (playBall) {
+    Object.values(ballPlayStateClasses).forEach((stateClass) => {
+      playBall.classList.remove(stateClass);
+    });
+
+    const nextStateClass = ballPlayStateClasses[ballPlayState];
+
+    if (nextStateClass) {
+      playBall.classList.add(nextStateClass);
+    }
   }
 
-  Object.values(ballPlayStateClasses).forEach((stateClass) => {
-    playBall.classList.remove(stateClass);
-  });
-
-  const nextStateClass = ballPlayStateClasses[ballPlayState];
-
-  if (nextStateClass) {
-    playBall.classList.add(nextStateClass);
+  if (ballPlayGamja) {
+    ballPlayGamja.classList.toggle("is-reacting", ballPlayState === BALL_PLAY_STATES.GAMJA_REACTING);
   }
 };
 
@@ -299,13 +301,12 @@ if (tapBallButton && playBall && ballGameMessage) {
   tapBallButton.addEventListener("click", startBallPlayRound);
 }
 
-if (gamjaCallButton && gamjaStatus && gamjaMessage && gamjaCharacter) {
+if (gamjaCallButton && gamjaMessage && gamjaCharacter) {
   gamjaCallButton.addEventListener("click", () => {
     const response = gamjaResponses[gamjaResponseIndex % gamjaResponses.length];
     gamjaResponseIndex += 1;
     playGamjaSound();
 
-    gamjaStatus.textContent = response;
     gamjaMessage.textContent = response;
     gamjaMessage.hidden = false;
 

@@ -135,12 +135,6 @@ h1 {
   line-height: 1.6;
 }
 
-.potato-status {
-  margin-top: 8px;
-  color: var(--text-main);
-  font-weight: 700;
-}
-
 .home-note {
   margin-top: 4px;
 }
@@ -214,8 +208,11 @@ h1 {
   transform: none;
 }
 
+.game-view {
+  min-height: 480px;
+}
+
 .ball-game-view {
-  min-height: 486px;
   padding: 34px 0 18px;
 }
 
@@ -244,11 +241,52 @@ h1 {
   transform: translateX(-50%);
 }
 
+.ball-play-gamja {
+  position: absolute;
+  right: 24px;
+  bottom: 20px;
+  z-index: 2;
+  width: 78px;
+  pointer-events: none;
+  transform-origin: 50% 92%;
+}
+
+.ball-play-gamja::after {
+  content: "";
+  position: absolute;
+  left: 22%;
+  right: 20%;
+  bottom: 7px;
+  z-index: 0;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(76, 52, 39, 0.13);
+  filter: blur(2px);
+}
+
+.ball-play-gamja-image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.ball-play-gamja.is-reacting {
+  animation: ball-play-gamja-pop 520ms ease;
+}
+
+.ball-play-gamja.is-reacting::after {
+  animation: ball-play-gamja-shadow 520ms ease;
+}
+
 .play-ball {
-  --ball-roll-distance: min(118px, 28vw);
+  --ball-roll-distance: min(126px, 30vw);
   position: absolute;
   left: 50%;
-  bottom: 54px;
+  bottom: 30px;
+  z-index: 4;
   width: 54px;
   height: 54px;
   border: 4px solid rgba(76, 52, 39, 0.16);
@@ -289,7 +327,7 @@ h1 {
   position: absolute;
   top: 14px;
   right: 14px;
-  z-index: 3;
+  z-index: 6;
   width: fit-content;
   max-width: min(54%, 190px);
   margin: 0;
@@ -320,7 +358,7 @@ h1 {
 .room-scene {
   position: relative;
   min-height: 310px;
-  margin-top: 26px;
+  margin-top: 17px;
   border-radius: 8px;
   overflow: hidden;
   background: #ffe8c8;
@@ -711,6 +749,39 @@ h1 {
   }
 }
 
+@keyframes ball-play-gamja-pop {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  36% {
+    transform: translateY(-7px) scale(1.035);
+  }
+
+  72% {
+    transform: translateY(1px) scale(0.998);
+  }
+}
+
+@keyframes ball-play-gamja-shadow {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  36% {
+    opacity: 0.72;
+    transform: scaleX(0.84);
+  }
+
+  72% {
+    opacity: 0.94;
+    transform: scaleX(1.04);
+  }
+}
+
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -857,8 +928,11 @@ h1 {
     font-size: 0.78rem;
   }
 
+  .game-view {
+    min-height: 497px;
+  }
+
   .ball-game-view {
-    min-height: 430px;
     padding: 28px 0 12px;
   }
 
@@ -867,7 +941,14 @@ h1 {
     margin-bottom: 18px;
   }
 
+  .ball-play-gamja {
+    right: 18px;
+    bottom: 22px;
+    width: 58px;
+  }
+
   .play-ball {
+    --ball-roll-distance: min(108px, 28vw);
     bottom: 32px;
   }
 
@@ -924,7 +1005,9 @@ h1 {
   .gamja-character.is-happy .gamja-motion,
   .gamja-character.is-happy::after,
   .gamja-character.is-happy .gamja-preview-image,
-  .gamja-speech.is-happy {
+  .gamja-speech.is-happy,
+  .ball-play-gamja.is-reacting,
+  .ball-play-gamja.is-reacting::after {
     animation: none;
   }
 

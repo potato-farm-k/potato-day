@@ -208,6 +208,12 @@ h1 {
   transform: translateY(-1px);
 }
 
+.tap-ball-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
+}
+
 .ball-game-view {
   min-height: 486px;
   padding: 34px 0 18px;

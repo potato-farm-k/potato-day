@@ -1,4 +1,4 @@
-console.log("Potato’s Day v1.0");
+console.log("Potato’s Day v1.1");
 
 const workflowOpenButton = document.querySelector("[data-workflow-open]");
 const workflowModal = document.querySelector("#workflow-modal");
@@ -27,11 +27,25 @@ const ballGameResponses = [
   "감자가 신나게 바라봅니다.",
   "감자가 꼬리를 흔드는 기분이에요.",
 ];
+const BALL_PLAY_STATES = Object.freeze({
+  READY: "ready",
+  ROLLING: "rolling",
+  GAMJA_REACTING: "gamja-reacting",
+  RETURNING: "returning",
+});
+const ballPlayStateMessages = {
+  [BALL_PLAY_STATES.READY]: "공놀이를 시작할 준비가 되었어요.",
+  [BALL_PLAY_STATES.ROLLING]: "공이 감자 쪽으로 굴러가요.",
+  [BALL_PLAY_STATES.GAMJA_REACTING]: "감자가 공을 바라보고 있어요.",
+  [BALL_PLAY_STATES.RETURNING]: "공이 다시 제자리로 돌아와요.",
+};
 
 let gamjaResponseIndex = 0;
 let ballGameResponseIndex = 0;
+let ballPlayState = BALL_PLAY_STATES.READY;
 let gamjaReactionTimer;
 let ballReactionTimer;
+let ballRoundTimers = [];
 let isSoundEnabled = true;
 let gamjaAudioContext;
 let didLogAudioUnsupported = false;
@@ -67,6 +81,7 @@ if (workflowOpenButton && workflowModal && workflowCloseButton) {
 
 if (homeView && ballGameView && ballGameOpenButton && returnHomeButton) {
   const showHomeView = () => {
+    resetBallPlayRound();
     homeView.hidden = false;
     homeView.classList.remove("is-hidden");
     ballGameView.hidden = true;
@@ -184,27 +199,97 @@ if (soundToggleButton) {
   });
 }
 
-if (tapBallButton && playBall && ballGameMessage) {
-  tapBallButton.addEventListener("click", () => {
-    const response = ballGameResponses[ballGameResponseIndex % ballGameResponses.length];
-    ballGameResponseIndex += 1;
-    playGamjaSound();
+const getNextBallGameResponse = () => {
+  const response = ballGameResponses[ballGameResponseIndex % ballGameResponses.length];
+  ballGameResponseIndex += 1;
 
-    ballGameMessage.textContent = response;
-    ballGameMessage.hidden = false;
+  return response;
+};
 
-    playBall.classList.remove("is-bouncing");
-    window.clearTimeout(ballReactionTimer);
-    void playBall.offsetWidth;
-
-    requestAnimationFrame(() => {
-      playBall.classList.add("is-bouncing");
-    });
-
-    ballReactionTimer = window.setTimeout(() => {
-      playBall.classList.remove("is-bouncing");
-    }, 650);
+const clearBallRoundTimers = () => {
+  ballRoundTimers.forEach((timer) => {
+    window.clearTimeout(timer);
   });
+  ballRoundTimers = [];
+};
+
+const updateBallPlayButton = () => {
+  if (!tapBallButton) {
+    return;
+  }
+
+  tapBallButton.disabled = ballPlayState !== BALL_PLAY_STATES.READY;
+};
+
+const setBallPlayState = (nextState, message = ballPlayStateMessages[nextState]) => {
+  if (!Object.values(BALL_PLAY_STATES).includes(nextState)) {
+    return;
+  }
+
+  ballPlayState = nextState;
+
+  if (ballGameView) {
+    ballGameView.dataset.ballPlayState = nextState;
+  }
+
+  if (ballGameMessage && message) {
+    ballGameMessage.textContent = message;
+    ballGameMessage.hidden = false;
+  }
+
+  updateBallPlayButton();
+};
+
+const queueBallPlayState = (nextState, delay, message) => {
+  const timer = window.setTimeout(() => {
+    setBallPlayState(nextState, message);
+  }, delay);
+
+  ballRoundTimers.push(timer);
+};
+
+const playBallBounce = () => {
+  if (!playBall) {
+    return;
+  }
+
+  playBall.classList.remove("is-bouncing");
+  window.clearTimeout(ballReactionTimer);
+  void playBall.offsetWidth;
+
+  requestAnimationFrame(() => {
+    playBall.classList.add("is-bouncing");
+  });
+
+  ballReactionTimer = window.setTimeout(() => {
+    playBall.classList.remove("is-bouncing");
+  }, 650);
+};
+
+const resetBallPlayRound = () => {
+  clearBallRoundTimers();
+  setBallPlayState(BALL_PLAY_STATES.READY);
+};
+
+const startBallPlayRound = () => {
+  if (ballPlayState !== BALL_PLAY_STATES.READY) {
+    return;
+  }
+
+  const response = getNextBallGameResponse();
+
+  clearBallRoundTimers();
+  playGamjaSound();
+  playBallBounce();
+  setBallPlayState(BALL_PLAY_STATES.ROLLING);
+  queueBallPlayState(BALL_PLAY_STATES.GAMJA_REACTING, 420, response);
+  queueBallPlayState(BALL_PLAY_STATES.RETURNING, 920);
+  queueBallPlayState(BALL_PLAY_STATES.READY, 1320);
+};
+
+if (tapBallButton && playBall && ballGameMessage) {
+  updateBallPlayButton();
+  tapBallButton.addEventListener("click", startBallPlayRound);
 }
 
 if (gamjaCallButton && gamjaStatus && gamjaMessage && gamjaCharacter) {

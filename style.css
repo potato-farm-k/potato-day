@@ -57,6 +57,7 @@ button {
 
 .workflow-toggle:focus-visible,
 .call-gamja-button:focus-visible,
+.sound-toggle:focus-visible,
 .modal-close:focus-visible {
   outline: 3px solid rgba(216, 137, 69, 0.42);
   outline-offset: 3px;
@@ -139,11 +140,15 @@ h1 {
 
 .gamja-actions {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   justify-content: center;
   margin-top: 14px;
 }
 
-.call-gamja-button {
+.call-gamja-button,
+.sound-toggle {
   padding: 9px 18px;
   border: 1px solid rgba(216, 137, 69, 0.36);
   border-radius: 999px;
@@ -156,7 +161,19 @@ h1 {
   transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
-.call-gamja-button:hover {
+.sound-toggle {
+  padding: 8px 13px;
+  background: #fff7e8;
+  font-size: 0.84rem;
+}
+
+.sound-toggle[aria-pressed="false"] {
+  color: var(--text-soft);
+  background: #f6e5d5;
+}
+
+.call-gamja-button:hover,
+.sound-toggle:hover {
   background: #fff8e7;
   box-shadow: 0 11px 22px rgba(76, 52, 39, 0.12);
   transform: translateY(-1px);
@@ -692,6 +709,11 @@ h1 {
   .call-gamja-button {
     padding: 8px 15px;
     font-size: 0.88rem;
+  }
+
+  .sound-toggle {
+    padding: 7px 11px;
+    font-size: 0.78rem;
   }
 
   .gamja-speech {

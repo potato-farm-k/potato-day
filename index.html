@@ -54,14 +54,14 @@
         </div>
 
         <section class="ball-game-view is-hidden" aria-labelledby="ball-game-title" data-ball-game-view hidden>
-          <div class="ball-game-preview" aria-hidden="true">
-            <span class="play-ball" data-play-ball></span>
+          <div class="ball-game-preview" aria-label="공놀이 장면">
+            <span class="play-ball" aria-hidden="true" data-play-ball></span>
+            <p class="ball-game-message" aria-live="polite" data-ball-game-message hidden>감자가 공을 기다리고 있어요.</p>
           </div>
           <h2 id="ball-game-title">감자와 공놀이</h2>
           <p>감자와 공놀이를 해볼까요?</p>
           <p>버튼을 누르면 공이 통통 움직여요.</p>
           <p class="ball-game-hint">점수도 실패도 없이, 감자와 가볍게 놀아보세요.</p>
-          <p class="ball-game-message" aria-live="polite" data-ball-game-message hidden>감자가 공을 기다리고 있어요.</p>
           <div class="ball-game-actions">
             <button class="tap-ball-button" type="button" aria-label="공을 톡 치기" data-tap-ball>공 톡 치기</button>
             <button class="return-home-button" type="button" aria-label="감자의 집으로 돌아가기" data-return-home>감자의 집으로 돌아가기</button>

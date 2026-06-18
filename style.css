@@ -260,19 +260,27 @@ h1 {
 .ball-game-hint {
   max-width: 360px;
   margin: 6px auto 0;
+  text-align: center;
 }
 
 .ball-game-message {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
   width: fit-content;
-  max-width: min(100%, 340px);
-  margin: 12px auto 0;
-  padding: 9px 14px;
+  max-width: min(54%, 190px);
+  margin: 0;
+  padding: 8px 11px;
   border: 1px solid rgba(216, 137, 69, 0.28);
   border-radius: 18px;
   color: var(--text-main);
-  background: rgba(255, 250, 240, 0.78);
+  background: rgba(255, 250, 240, 0.92);
   box-shadow: 0 8px 18px rgba(76, 52, 39, 0.08);
+  font-size: 0.84rem;
   font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
 }
 
 .ball-game-message[hidden] {
@@ -861,9 +869,12 @@ h1 {
   }
 
   .ball-game-message {
-    max-width: min(100%, 250px);
-    padding: 8px 12px;
-    font-size: 0.86rem;
+    top: 10px;
+    right: 10px;
+    max-width: min(66%, 200px);
+    padding: 6px 8px;
+    font-size: 0.72rem;
+    line-height: 1.25;
   }
 
   .gamja-speech {

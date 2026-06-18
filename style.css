@@ -57,7 +57,9 @@ button {
 
 .workflow-toggle:focus-visible,
 .call-gamja-button:focus-visible,
+.ball-game-button:focus-visible,
 .sound-toggle:focus-visible,
+.return-home-button:focus-visible,
 .modal-close:focus-visible {
   outline: 3px solid rgba(216, 137, 69, 0.42);
   outline-offset: 3px;
@@ -138,6 +140,10 @@ h1 {
   font-weight: 700;
 }
 
+.is-hidden {
+  display: none;
+}
+
 .gamja-actions {
   display: flex;
   align-items: center;
@@ -148,6 +154,8 @@ h1 {
 }
 
 .call-gamja-button,
+.ball-game-button,
+.return-home-button,
 .sound-toggle {
   padding: 9px 18px;
   border: 1px solid rgba(216, 137, 69, 0.36);
@@ -159,6 +167,15 @@ h1 {
   font-size: 0.95rem;
   font-weight: 700;
   transition: background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.ball-game-button {
+  background: #ffe2d1;
+}
+
+.return-home-button {
+  margin-top: 18px;
+  background: #fff0cf;
 }
 
 .sound-toggle {
@@ -173,10 +190,63 @@ h1 {
 }
 
 .call-gamja-button:hover,
+.ball-game-button:hover,
+.return-home-button:hover,
 .sound-toggle:hover {
   background: #fff8e7;
   box-shadow: 0 11px 22px rgba(76, 52, 39, 0.12);
   transform: translateY(-1px);
+}
+
+.ball-game-intro-view {
+  min-height: 486px;
+  padding: 36px 0 18px;
+}
+
+.ball-game-preview {
+  position: relative;
+  width: min(100%, 420px);
+  height: 190px;
+  margin: 0 auto 22px;
+  border-radius: 8px;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(255, 250, 240, 0.45) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(180deg, #ffe9ca 0 62%, #e7c292 62% 100%);
+  box-shadow: inset 0 -8px 0 rgba(76, 52, 39, 0.04);
+}
+
+.ball-game-preview::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  width: 230px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(233, 144, 156, 0.48);
+  transform: translateX(-50%);
+}
+
+.practice-ball {
+  position: absolute;
+  left: 50%;
+  bottom: 54px;
+  width: 54px;
+  height: 54px;
+  border: 4px solid rgba(76, 52, 39, 0.16);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 250, 240, 0.92) 0 18%, transparent 20%),
+    linear-gradient(135deg, #fff7e8 0 46%, #f2a56b 47% 53%, #ffe0aa 54% 100%);
+  box-shadow: 0 12px 20px rgba(76, 52, 39, 0.14);
+  transform: translateX(-50%);
+}
+
+.ball-game-note {
+  margin-top: 6px;
+  color: var(--text-main);
+  font-weight: 700;
 }
 
 .room-scene {
@@ -706,7 +776,9 @@ h1 {
     margin-top: 12px;
   }
 
-  .call-gamja-button {
+  .call-gamja-button,
+  .ball-game-button,
+  .return-home-button {
     padding: 8px 15px;
     font-size: 0.88rem;
   }
@@ -714,6 +786,16 @@ h1 {
   .sound-toggle {
     padding: 7px 11px;
     font-size: 0.78rem;
+  }
+
+  .ball-game-intro-view {
+    min-height: 430px;
+    padding: 30px 0 12px;
+  }
+
+  .ball-game-preview {
+    height: 166px;
+    margin-bottom: 20px;
   }
 
   .gamja-speech {

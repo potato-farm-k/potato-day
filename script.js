@@ -1,8 +1,12 @@
-console.log("Potato’s Day v0.7");
+console.log("Potato’s Day v0.8");
 
 const workflowOpenButton = document.querySelector("[data-workflow-open]");
 const workflowModal = document.querySelector("#workflow-modal");
 const workflowCloseButton = document.querySelector("[data-workflow-close]");
+const homeView = document.querySelector("[data-home-view]");
+const ballGameIntroView = document.querySelector("[data-ball-game-intro-view]");
+const ballGameOpenButton = document.querySelector("[data-ball-game-open]");
+const returnHomeButton = document.querySelector("[data-return-home]");
 const gamjaCallButton = document.querySelector("[data-call-gamja]");
 const soundToggleButton = document.querySelector("[data-sound-toggle]");
 const gamjaStatus = document.querySelector("[data-gamja-status]");
@@ -48,6 +52,27 @@ if (workflowOpenButton && workflowModal && workflowCloseButton) {
       closeWorkflowModal();
     }
   });
+}
+
+if (homeView && ballGameIntroView && ballGameOpenButton && returnHomeButton) {
+  const showHomeView = () => {
+    homeView.hidden = false;
+    homeView.classList.remove("is-hidden");
+    ballGameIntroView.hidden = true;
+    ballGameIntroView.classList.add("is-hidden");
+    ballGameOpenButton.focus();
+  };
+
+  const showBallGameIntroView = () => {
+    homeView.hidden = true;
+    homeView.classList.add("is-hidden");
+    ballGameIntroView.hidden = false;
+    ballGameIntroView.classList.remove("is-hidden");
+    returnHomeButton.focus();
+  };
+
+  ballGameOpenButton.addEventListener("click", showBallGameIntroView);
+  returnHomeButton.addEventListener("click", showHomeView);
 }
 
 const updateSoundToggle = () => {

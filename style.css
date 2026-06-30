@@ -61,6 +61,8 @@ button {
 .tap-ball-button:focus-visible,
 .sound-toggle:focus-visible,
 .return-home-button:focus-visible,
+.sprite-lab-button:focus-visible,
+.sprite-lab-return-button:focus-visible,
 .modal-close:focus-visible {
   outline: 3px solid rgba(216, 137, 69, 0.42);
   outline-offset: 3px;
@@ -156,7 +158,8 @@ h1 {
 .ball-game-button,
 .tap-ball-button,
 .return-home-button,
-.sound-toggle {
+.sound-toggle,
+.sprite-lab-return-button {
   padding: 9px 18px;
   border: 1px solid rgba(216, 137, 69, 0.36);
   border-radius: 999px;
@@ -187,6 +190,18 @@ h1 {
   font-size: 0.84rem;
 }
 
+.sprite-lab-button {
+  padding: 6px 11px;
+  border: 1px dashed rgba(122, 91, 69, 0.34);
+  border-radius: 999px;
+  color: var(--text-soft);
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.74rem;
+  font-weight: 700;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
 .sound-toggle[aria-pressed="false"] {
   color: var(--text-soft);
   background: #f6e5d5;
@@ -196,9 +211,16 @@ h1 {
 .ball-game-button:hover,
 .tap-ball-button:hover,
 .return-home-button:hover,
-.sound-toggle:hover {
+.sound-toggle:hover,
+.sprite-lab-return-button:hover {
   background: #fff8e7;
   box-shadow: 0 11px 22px rgba(76, 52, 39, 0.12);
+  transform: translateY(-1px);
+}
+
+.sprite-lab-button:hover {
+  border-color: rgba(216, 137, 69, 0.52);
+  background: #fff8e7;
   transform: translateY(-1px);
 }
 
@@ -353,6 +375,99 @@ h1 {
   gap: 8px;
   justify-content: center;
   margin-top: 14px;
+}
+
+.sprite-lab-view {
+  padding: 22px 0 12px;
+}
+
+.sprite-lab-view .sprite-lab-badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 4px 9px;
+  border: 1px dashed rgba(122, 91, 69, 0.38);
+  border-radius: 999px;
+  color: var(--text-soft);
+  background: #fff7e8;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.sprite-test-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 340px;
+  margin: 18px auto 10px;
+  padding: 10px 0;
+  border: 1px dashed rgba(122, 91, 69, 0.28);
+  border-radius: 8px;
+  background:
+    radial-gradient(ellipse at 50% 78%, rgba(76, 52, 39, 0.1) 0 18%, transparent 19%),
+    linear-gradient(180deg, #fff7e8 0 68%, #ead0aa 68% 100%);
+}
+
+.sprite-test-viewport {
+  position: relative;
+  width: clamp(140px, 25vw, 160px);
+  aspect-ratio: var(--sprite-lab-frame-aspect, 1 / 2);
+  overflow: hidden;
+  opacity: 0;
+}
+
+.sprite-test-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 600%;
+  max-width: none;
+  height: auto;
+  animation: sprite-test-walk-cycle 840ms steps(6, end) infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+.sprite-lab-view.is-sprite-ready .sprite-test-viewport {
+  opacity: 1;
+}
+
+.sprite-lab-view.is-sprite-ready .sprite-test-strip {
+  animation-play-state: running;
+}
+
+.sprite-lab-view.is-sprite-error .sprite-test-stage {
+  min-height: 150px;
+}
+
+.sprite-lab-view.is-sprite-error .sprite-test-viewport {
+  display: none;
+}
+
+.sprite-lab-view .sprite-lab-status {
+  margin-bottom: 12px;
+  font-size: 0.84rem;
+}
+
+.sprite-lab-view.is-sprite-error .sprite-lab-status {
+  color: #9b4d4d;
+  font-weight: 700;
+}
+
+.sprite-lab-return-button {
+  background: #fff0cf;
+}
+
+@keyframes sprite-test-walk-cycle {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 .room-scene {
@@ -928,12 +1043,25 @@ h1 {
     font-size: 0.78rem;
   }
 
+  .sprite-lab-button {
+    padding: 6px 9px;
+    font-size: 0.7rem;
+  }
+
   .game-view {
     min-height: 497px;
   }
 
   .ball-game-view {
     padding: 28px 0 12px;
+  }
+
+  .sprite-lab-view {
+    padding-top: 18px;
+  }
+
+  .sprite-test-stage {
+    min-height: 308px;
   }
 
   .ball-game-preview {
@@ -1007,7 +1135,8 @@ h1 {
   .gamja-character.is-happy .gamja-preview-image,
   .gamja-speech.is-happy,
   .ball-play-gamja.is-reacting,
-  .ball-play-gamja.is-reacting::after {
+  .ball-play-gamja.is-reacting::after,
+  .sprite-test-strip {
     animation: none;
   }
 

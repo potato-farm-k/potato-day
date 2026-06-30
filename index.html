@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Potato’s Day</title>
-  <link rel="stylesheet" href="style.css?v=1.3.2">
+  <link rel="stylesheet" href="style.css?v=1.3.2-sprite-lab">
 </head>
 <body>
   <main class="home-screen">
@@ -24,6 +24,7 @@
             <button class="call-gamja-button" type="button" aria-label="감자 부르기" data-call-gamja>감자 부르기</button>
             <button class="ball-game-button" type="button" aria-label="공놀이 화면으로 이동" data-ball-game-open>공놀이 하러 가기</button>
             <button class="sound-toggle" type="button" aria-label="효과음 끄기" aria-pressed="true" data-sound-toggle>🔈 소리 켜짐</button>
+            <button class="sprite-lab-button" type="button" aria-label="Sprite Lab 테스트 화면 열기" data-sprite-lab-open>Sprite Lab</button>
           </div>
 
           <div class="room-scene" aria-label="감자의 집 휴식 공간">
@@ -69,6 +70,19 @@
             <button class="return-home-button" type="button" aria-label="감자의 집으로 돌아가기" data-return-home>감자의 집으로 돌아가기</button>
           </div>
         </section>
+
+        <section class="sprite-lab-view game-view is-hidden" aria-labelledby="sprite-lab-title" data-sprite-lab-view hidden>
+          <p class="sprite-lab-badge">Sprite Lab / Experimental</p>
+          <h2 id="sprite-lab-title">Sprite Lab</h2>
+          <p>Sprite Lab: 감자 걷기 애니메이션 테스트</p>
+          <div class="sprite-test-stage">
+            <div class="sprite-test-viewport" role="img" aria-label="제자리에서 걷는 감자 캐릭터 6프레임 애니메이션" data-sprite-lab-viewport>
+              <img class="sprite-test-strip" src="assets/characters/sprite-test/gamja-walk-sprite.png" alt="" aria-hidden="true" data-sprite-lab-sheet>
+            </div>
+          </div>
+          <p class="sprite-lab-status" role="status" aria-live="polite" data-sprite-lab-status>Sprite sheet를 불러오는 중이에요.</p>
+          <button class="sprite-lab-return-button" type="button" aria-label="감자의 집으로 돌아가기" data-sprite-lab-return>감자의 집으로 돌아가기</button>
+        </section>
       </div>
     </section>
   </main>
@@ -85,6 +99,6 @@
     </section>
   </div>
 
-  <script src="script.js?v=1.3.2"></script>
+  <script src="script.js?v=1.3.2-sprite-lab"></script>
 </body>
 </html>

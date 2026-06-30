@@ -5,8 +5,14 @@ const workflowModal = document.querySelector("#workflow-modal");
 const workflowCloseButton = document.querySelector("[data-workflow-close]");
 const homeView = document.querySelector("[data-home-view]");
 const ballGameView = document.querySelector("[data-ball-game-view]");
+const spriteLabView = document.querySelector("[data-sprite-lab-view]");
 const ballGameOpenButton = document.querySelector("[data-ball-game-open]");
 const returnHomeButton = document.querySelector("[data-return-home]");
+const spriteLabOpenButton = document.querySelector("[data-sprite-lab-open]");
+const spriteLabReturnButton = document.querySelector("[data-sprite-lab-return]");
+const spriteLabViewport = document.querySelector("[data-sprite-lab-viewport]");
+const spriteLabSheet = document.querySelector("[data-sprite-lab-sheet]");
+const spriteLabStatus = document.querySelector("[data-sprite-lab-status]");
 const tapBallButton = document.querySelector("[data-tap-ball]");
 const playBall = document.querySelector("[data-play-ball]");
 const ballPlayGamja = document.querySelector("[data-ball-play-gamja]");
@@ -49,6 +55,7 @@ const BALL_PLAY_TIMING = Object.freeze({
   RETURNING: 1180,
   READY: 1940,
 });
+const SPRITE_LAB_FRAME_COUNT = 6;
 
 let gamjaResponseIndex = 0;
 let ballGameResponseIndex = 0;
@@ -58,6 +65,42 @@ let ballRoundTimers = [];
 let isSoundEnabled = true;
 let gamjaAudioContext;
 let didLogAudioUnsupported = false;
+
+if (spriteLabView && spriteLabViewport && spriteLabSheet && spriteLabStatus) {
+  const showSpriteLabLoadError = () => {
+    spriteLabView.classList.remove("is-sprite-ready");
+    spriteLabView.classList.add("is-sprite-error");
+    spriteLabStatus.textContent = "Sprite sheet를 불러오지 못했어요. 파일 경로를 확인해주세요.";
+  };
+
+  const configureSpriteLabSheet = () => {
+    const frameWidth = spriteLabSheet.naturalWidth / SPRITE_LAB_FRAME_COUNT;
+    const frameHeight = spriteLabSheet.naturalHeight;
+
+    if (!Number.isFinite(frameWidth) || frameWidth <= 0 || frameHeight <= 0) {
+      showSpriteLabLoadError();
+      return;
+    }
+
+    spriteLabViewport.style.setProperty("--sprite-lab-frame-aspect", `${frameWidth} / ${frameHeight}`);
+    spriteLabViewport.dataset.frameWidth = String(frameWidth);
+    spriteLabViewport.dataset.frameHeight = String(frameHeight);
+    spriteLabView.classList.remove("is-sprite-error");
+    spriteLabView.classList.add("is-sprite-ready");
+    spriteLabStatus.textContent = `6프레임 반복 재생 중 · 프레임 ${frameWidth} × ${frameHeight}px`;
+  };
+
+  spriteLabSheet.addEventListener("load", configureSpriteLabSheet);
+  spriteLabSheet.addEventListener("error", showSpriteLabLoadError);
+
+  if (spriteLabSheet.complete) {
+    if (spriteLabSheet.naturalWidth > 0) {
+      configureSpriteLabSheet();
+    } else {
+      showSpriteLabLoadError();
+    }
+  }
+}
 
 if (workflowOpenButton && workflowModal && workflowCloseButton) {
   const openWorkflowModal = () => {
@@ -88,21 +131,37 @@ if (workflowOpenButton && workflowModal && workflowCloseButton) {
   });
 }
 
-if (homeView && ballGameView && ballGameOpenButton && returnHomeButton) {
-  const showHomeView = () => {
+if (
+  homeView
+  && ballGameView
+  && spriteLabView
+  && ballGameOpenButton
+  && returnHomeButton
+  && spriteLabOpenButton
+  && spriteLabReturnButton
+) {
+  const hideView = (view) => {
+    view.hidden = true;
+    view.classList.add("is-hidden");
+  };
+
+  const showView = (view) => {
+    view.hidden = false;
+    view.classList.remove("is-hidden");
+  };
+
+  const showHomeView = (focusTarget) => {
     resetBallPlayRound();
-    homeView.hidden = false;
-    homeView.classList.remove("is-hidden");
-    ballGameView.hidden = true;
-    ballGameView.classList.add("is-hidden");
-    ballGameOpenButton.focus();
+    showView(homeView);
+    hideView(ballGameView);
+    hideView(spriteLabView);
+    focusTarget.focus();
   };
 
   const showBallGameView = () => {
-    homeView.hidden = true;
-    homeView.classList.add("is-hidden");
-    ballGameView.hidden = false;
-    ballGameView.classList.remove("is-hidden");
+    hideView(homeView);
+    hideView(spriteLabView);
+    showView(ballGameView);
 
     if (tapBallButton) {
       tapBallButton.focus();
@@ -111,8 +170,18 @@ if (homeView && ballGameView && ballGameOpenButton && returnHomeButton) {
     }
   };
 
+  const showSpriteLabView = () => {
+    resetBallPlayRound();
+    hideView(homeView);
+    hideView(ballGameView);
+    showView(spriteLabView);
+    spriteLabReturnButton.focus();
+  };
+
   ballGameOpenButton.addEventListener("click", showBallGameView);
-  returnHomeButton.addEventListener("click", showHomeView);
+  returnHomeButton.addEventListener("click", () => showHomeView(ballGameOpenButton));
+  spriteLabOpenButton.addEventListener("click", showSpriteLabView);
+  spriteLabReturnButton.addEventListener("click", () => showHomeView(spriteLabOpenButton));
 }
 
 const updateSoundToggle = () => {

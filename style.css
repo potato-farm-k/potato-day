@@ -417,17 +417,19 @@ h1 {
 .sprite-test-stage::before {
   content: "";
   position: absolute;
-  top: calc(var(--sprite-lab-ground-start) - 13px);
-  left: -64px;
+  top: calc(var(--sprite-lab-ground-start) - 12px);
+  left: -96px;
   z-index: 2;
-  width: calc(100% + 128px);
-  height: 22px;
+  width: calc(100% + 192px);
+  height: 20px;
   background:
-    linear-gradient(70deg, transparent 43%, #83b69e 44% 55%, transparent 56%) 0 100% / 28px 15px repeat-x,
-    linear-gradient(110deg, transparent 43%, #a3cbb8 44% 55%, transparent 56%) 14px 100% / 34px 12px repeat-x;
-  opacity: 0.7;
+    linear-gradient(to top, rgba(104, 151, 108, 0.34) 0 2px, transparent 2px) 0 100% / 100% 100% no-repeat,
+    conic-gradient(from 347deg at 50% 100%, #719f74 0deg 26deg, transparent 27deg 360deg) 0 100% / 24px 18px repeat-x,
+    conic-gradient(from 326deg at 50% 100%, #8bb288 0deg 19deg, transparent 20deg 360deg) 8px 100% / 32px 15px repeat-x,
+    conic-gradient(from 8deg at 50% 100%, #a0c59a 0deg 18deg, transparent 19deg 360deg) 16px 100% / 32px 12px repeat-x;
+  opacity: 0.82;
   pointer-events: none;
-  animation: sprite-lab-grass-drift 16s linear infinite;
+  animation: sprite-lab-grass-drift 3.36s linear infinite;
   will-change: transform;
 }
 
@@ -499,7 +501,7 @@ h1 {
   }
 
   to {
-    transform: translateX(-64px);
+    transform: translateX(-96px);
   }
 }
 

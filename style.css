@@ -396,21 +396,44 @@ h1 {
 }
 
 .sprite-test-stage {
+  --sprite-lab-ground-start: 69%;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   min-height: 340px;
   margin: 18px auto 10px;
   padding: 10px 0;
-  border: 1px dashed rgba(122, 91, 69, 0.28);
+  border: 1px solid rgba(91, 145, 121, 0.3);
   border-radius: 8px;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #eaf7f2 0 var(--sprite-lab-ground-start),
+    #cfe8dc var(--sprite-lab-ground-start) 100%
+  );
+}
+
+.sprite-test-stage::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--sprite-lab-ground-start) - 13px);
+  left: -64px;
+  z-index: 2;
+  width: calc(100% + 128px);
+  height: 22px;
   background:
-    radial-gradient(ellipse at 50% 78%, rgba(76, 52, 39, 0.1) 0 18%, transparent 19%),
-    linear-gradient(180deg, #fff7e8 0 68%, #ead0aa 68% 100%);
+    linear-gradient(70deg, transparent 43%, #83b69e 44% 55%, transparent 56%) 0 100% / 28px 15px repeat-x,
+    linear-gradient(110deg, transparent 43%, #a3cbb8 44% 55%, transparent 56%) 14px 100% / 34px 12px repeat-x;
+  opacity: 0.7;
+  pointer-events: none;
+  animation: sprite-lab-grass-drift 16s linear infinite;
+  will-change: transform;
 }
 
 .sprite-test-viewport {
   position: relative;
+  z-index: 1;
   width: clamp(140px, 25vw, 160px);
   aspect-ratio: var(--sprite-lab-frame-aspect, 1 / 2);
   overflow: hidden;
@@ -467,6 +490,16 @@ h1 {
 
   to {
     transform: translateX(-100%);
+  }
+}
+
+@keyframes sprite-lab-grass-drift {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-64px);
   }
 }
 
@@ -1136,7 +1169,8 @@ h1 {
   .gamja-speech.is-happy,
   .ball-play-gamja.is-reacting,
   .ball-play-gamja.is-reacting::after,
-  .sprite-test-strip {
+  .sprite-test-strip,
+  .sprite-test-stage::before {
     animation: none;
   }
 
